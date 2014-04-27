@@ -1,6 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
+using MikeRobbins.SitecoreDataImporter.Entities;
+using Newtonsoft.Json;
+using Sitecore.Data;
+using Sitecore.Data.Items;
+using Sitecore.Web;
+using StructureMap;
 
 namespace MikeRobbins.SitecoreDataImporter
 {
@@ -15,15 +22,15 @@ namespace MikeRobbins.SitecoreDataImporter
         {
             ObjectFactory.Initialize(x =>
             {
-                x.For<SitecoreDataImport.Business.Interfaces.IDataImport>()
-                    .Add<SitecoreDataImport.Business.Parsers.CsvParse>()
+                x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IDataImport>()
+                    .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
                     .Named("CSV");
 
-                x.For<SitecoreDataImport.Business.Interfaces.IProcessInputFile>()
-                  .Add<SitecoreDataImport.Business.ProcessInputFile>();
+                x.For<SitecoreDataImporter.Interfaces.IProcessInputFile>()
+                  .Add<SitecoreDataImporter.BusinessLogic.ProcessInputFile>();
 
-                x.For<SitecoreDataImport.Business.Interfaces.IItemImporter>()
-                  .Add<SitecoreDataImport.Business.ItemImporter>();
+                x.For<SitecoreDataImporter.Interfaces.IItemImporter>()
+                  .Add<SitecoreDataImporter.BusinessLogic.ItemImporter>();
             });
         }
         #endregion
@@ -53,7 +60,7 @@ namespace MikeRobbins.SitecoreDataImporter
         {
             if (importItems.Any())
             {
-                var itemImporter = ObjectFactory.GetInstance<SitecoreDataImport.Business.Interfaces.IItemImporter>();
+                var itemImporter = ObjectFactory.GetInstance<MikeRobbins.SitecoreDataImporter. Interfaces.IItemImporter>();
 
                 var resultOutput = itemImporter.ImportItems(importItems, templateId, parentFolder, update);
 
@@ -66,7 +73,7 @@ namespace MikeRobbins.SitecoreDataImporter
         {
             var files = GetFilesFromMediaLibrary(fileIds);
 
-            var processInputFile = ObjectFactory.GetInstance<SitecoreDataImport.Business.Interfaces.IProcessInputFile>();
+            var processInputFile = ObjectFactory.GetInstance<SitecoreDataImporter.Interfaces.IProcessInputFile>();
             processInputFile.MediaFile = files;
             processInputFile.Template = template;
 

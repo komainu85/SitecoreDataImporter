@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.Interfaces
 {

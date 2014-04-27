@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Sitecore.Globalization;
 
 namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Tools
 {

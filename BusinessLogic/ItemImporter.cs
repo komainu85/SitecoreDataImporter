@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Entities.Enums;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
 {

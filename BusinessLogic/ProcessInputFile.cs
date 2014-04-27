@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using Sitecore.Data.Items;
+using StructureMap;
 
 namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
 {
