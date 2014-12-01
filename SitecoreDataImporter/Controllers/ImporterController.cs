@@ -13,11 +13,8 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
 {
     public class ImporterController : Controller
     {
-        #region Properties
         readonly Database _master = Database.GetDatabase("master");
-        #endregion
-
-        #region Constructor
+  
         public ImporterController()
         {
             ObjectFactory.Initialize(x =>
@@ -26,6 +23,10 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
                     .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
                     .Named("CSV");
 
+                x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IDataImport>()
+                    .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
+                    .Named("DOCX");
+=
                 x.For<SitecoreDataImporter.Interfaces.IProcessInputFile>()
                   .Add<SitecoreDataImporter.BusinessLogic.ProcessInputFile>();
 
@@ -33,9 +34,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
                   .Add<SitecoreDataImporter.BusinessLogic.ItemImporter>();
             });
         }
-        #endregion
 
-        #region Public Method
         public string Import()
         {
             var selectedtemplateId = WebUtil.GetFormValue("template");
@@ -52,15 +51,12 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
 
             return ImportSitecoreItems(importItems, templateItem.ID, parentFolder, update);
         }
-        #endregion
-
-        #region Private Methods
-
+   
         private string ImportSitecoreItems(List<ImportItem> importItems, ID templateId, Item parentFolder, bool update)
         {
             if (importItems.Any())
             {
-                var itemImporter = ObjectFactory.GetInstance<MikeRobbins.SitecoreDataImporter. Interfaces.IItemImporter>();
+                var itemImporter = ObjectFactory.GetInstance<MikeRobbins.SitecoreDataImporter.Interfaces.IItemImporter>();
 
                 var resultOutput = itemImporter.ImportItems(importItems, templateId, parentFolder, update);
 
@@ -88,6 +84,5 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
 
             return (from mediaId in mediaIds select _master.GetItem(new ID(mediaId)) into item where item != null select (MediaItem)item).ToList();
         }
-        #endregion
     }
 }
