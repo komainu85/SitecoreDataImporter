@@ -66,11 +66,7 @@
 
                     for (var i = 0; i < json.length; i++) {
                         var obj = json[i];
-
-                        console.log(obj.result);
-
                         this.JsonDS.add(obj);
-
                     }
                 }
             });

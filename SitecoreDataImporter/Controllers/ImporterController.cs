@@ -9,7 +9,7 @@ using Sitecore.Data.Items;
 using Sitecore.Web;
 using StructureMap;
 
-namespace MikeRobbins.SitecoreDataImporter
+namespace MikeRobbins.SitecoreDataImporter.Controller
 {
     public class ImporterController : Controller
     {
