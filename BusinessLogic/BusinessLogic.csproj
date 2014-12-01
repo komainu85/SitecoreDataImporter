@@ -32,31 +32,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="Lucene.Net">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Lucene.Net.dll</HintPath>
-    </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.ContentSearch, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Sitecore.ContentSearch.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Client">
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch">
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.ContentSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.ContentSearch.Client">
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.ContentSearch.Client.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.Linq">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Sitecore.ContentSearch.Linq.dll</HintPath>
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.ContentSearch.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.ContentSearch.LuceneProvider">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.ContentSearch.LuceneProvider.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Sitecore.Kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="Sitecore.Logging">
-      <HintPath>..\packages\Sitecore7.2.DLLs.7.2.4715.0\lib\Sitecore.Logging.dll</HintPath>
+      <HintPath>..\packages\Sitecore.7.2.Dlls.7.2.0.140526\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
