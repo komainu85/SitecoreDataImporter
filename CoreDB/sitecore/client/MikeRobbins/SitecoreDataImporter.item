@@ -41,16 +41,15 @@ content-length: 0
 field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
 name: __Renderings
 key: __renderings
-content-length: 2889
+content-length: 2850
 
 <r>
   <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}" l="{4F72A793-BDBC-4262-9523-6AADD8FEA487}">
-    <r id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}" ph="Page.Code" uid="{237256AA-9D30-463E-9ED1-90CFF092FCF6}" />
+    <r id="{DAFAFFB8-74AF-4141-A96A-70B16834CEC6}" par="PageCodeScriptFileName=%2fsitecore%2fshell%2fclient%2fMikeRobbins%2fSitecoreDataImporter%2fDataImporter.js" ph="Page.Code" uid="{237256AA-9D30-463E-9ED1-90CFF092FCF6}" />
     <r id="{BE007891-2D9C-4E67-943C-752DBA0C041F}" par="ShowFooter=False" ph="Page.Body" uid="{F373AD1A-6282-4295-96D7-3E29D6EE88B3}" />
     <r id="{5AE97C0C-EE88-4564-A363-4FA11C01C90A}" ph="GlobalHeader" uid="{532C7DCD-29E7-4C34-9910-FC283D61A026}" />
     <r id="{93CEEFCD-2DE1-40AF-AE9A-EBBFBCCC522F}" ph="ApplicationHeader" uid="{1E240370-226C-40E4-9C54-7FE8630DF74A}" />
     <r id="{19A9EB6B-1283-49EB-BD75-AAFE76453469}" ph="ApplicationContent" uid="{5C96B069-71B7-4B1D-BE44-B673DE81D9DE}" />
-    <r id="{B2257CAC-47CA-4061-9352-C06D687ED32C}" par="Id=Uploader1" ph="TabControl1.phFiles.Content" uid="{BA1213B3-A48B-47EA-921F-703762B2CFC2}" />
     <r id="{7A69C522-7E99-4630-A25A-5D571505862A}" par="Id=GlobalLogo" ph="GlobalHeader.StartButton" uid="{A340B9F2-9FD0-4767-9B0B-62D7C8B0E5C7}" />
     <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=HeaderTitle&amp;Text=Sitecore+Data+Importer" ph="ApplicationHeader.Title" uid="{1DC97590-77EC-4F75-A687-D86F7D22CAAA}" />
     <r id="{F6C9F461-FCAF-47DC-AA01-C8C64C2EFFB8}" par="Id=Main&amp;UsePadding=1" ph="ApplicationContent.Main" uid="{8EC02FDB-51E9-4983-9AD3-FAD2210E5BAC}" />
@@ -68,7 +67,7 @@ content-length: 2889
 ----version----
 language: en
 version: 1
-revision: 98d18952-3e47-4c7f-ae03-f451dc6e7551
+revision: d02bec23-2836-4d9a-bba7-792fb3377369
 
 ----field----
 field: {7205A57F-93B4-413A-AA9A-6B16BBC59565}
@@ -90,14 +89,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-98d18952-3e47-4c7f-ae03-f451dc6e7551
+d02bec23-2836-4d9a-bba7-792fb3377369
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20141201T141735:635530402554462674
+20141203T134320:635532110001344587
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

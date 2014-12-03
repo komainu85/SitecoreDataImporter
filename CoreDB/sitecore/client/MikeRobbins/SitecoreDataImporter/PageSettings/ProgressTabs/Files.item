@@ -20,20 +20,20 @@ phFiles
 field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
 name: __Renderings
 key: __renderings
-content-length: 738
+content-length: 795
 
 <r>
   <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
     <r id="{F6C9F461-FCAF-47DC-AA01-C8C64C2EFFB8}" par="Id=Border1&amp;UsePadding=1" uid="{6CC04560-2912-4D23-8A6D-6B5951BCBA5A}" />
     <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=Text1&amp;TextType=Title&amp;Text=Please+select+or+drag+and+drop+either+docx+(word)+files+or+CSV+files." ph="Border1.Content" uid="{655EF63D-4ACD-46C8-B5E8-3B0FBE66649E}" />
-    <r id="{B2257CAC-47CA-4061-9352-C06D687ED32C}" par="Database=master&amp;Id=upFiles" ph="Border1.Content" uid="{0DAE1E8B-ADE7-4FC0-998B-5AC41CFA2A19}" />
+    <r id="{B2257CAC-47CA-4061-9352-C06D687ED32C}" par="Database=master&amp;Id=upFiles&amp;DestinationUrl=%2fsitecore%2fmedia+library%2fImports" ph="Border1.Content" uid="{0DAE1E8B-ADE7-4FC0-998B-5AC41CFA2A19}" />
     <r id="{F05CDBA5-03ED-46D2-B58C-C0283F86C332}" par="Id=UploaderInfo1" ph="Border1.Content" uid="{6691F27F-3603-4010-A9CA-BCA9DBCF5030}" />
   </d>
 </r>
 ----version----
 language: en
 version: 1
-revision: 220a4df3-9842-4818-b63c-f19b8216e780
+revision: 977faf4f-329c-4c59-9aca-ee0739af83e5
 
 ----field----
 field: {AEA872FB-AA91-4D1A-B877-3CA6FBBB4FD4}
@@ -55,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-220a4df3-9842-4818-b63c-f19b8216e780
+977faf4f-329c-4c59-9aca-ee0739af83e5
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 34
 
-20140307T135330:635297972102078184
+20141203T133528:635532105283512851
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

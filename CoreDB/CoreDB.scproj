@@ -182,7 +182,7 @@
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\client\MikeRobbins\SitecoreDataImporter\PageSettings\ResultsList.item">
-      <Icon>/~/icon/Control/32x32/listview_b.png.aspx</Icon>
+      <Icon>/temp/IconCache/Control/32x32/listview_b.png</Icon>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
