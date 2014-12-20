@@ -26,7 +26,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
                 x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IDataImport>()
                     .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
                     .Named("DOCX");
-=
+
                 x.For<SitecoreDataImporter.Interfaces.IProcessInputFile>()
                   .Add<SitecoreDataImporter.BusinessLogic.ProcessInputFile>();
 

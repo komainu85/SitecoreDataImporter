@@ -1,4 +1,5 @@
-﻿using MikeRobbins.SitecoreDataImporter.Interfaces;
+﻿using MikeRobbins.SitecoreDataImporter.Entities;
+using MikeRobbins.SitecoreDataImporter.Interfaces;
 using OpenXmlPowerTools;
 using System;
 using System.Collections.Generic;
@@ -67,7 +68,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
         }
 
 
-        public ConvertToHTML()
+        public string ConvertToHTML()
         {
             var wmldoc = new WmlDocument("tempDoc" ,MediaFile.GetMediaStream);
 

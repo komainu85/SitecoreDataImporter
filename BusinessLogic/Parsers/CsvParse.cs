@@ -30,10 +30,10 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
                     {
                         item.Fields.Add(headers[i], csv[i]);
 
-                       // if (headers[i].ToLower() == "title")
-                      //  {
-                       //     item.Title = csv[i];
-                       // }
+                        if (headers[i].ToLower() == "title")
+                        {
+                            item.Title = csv[i];
+                        }
                     }
 
                     items.Add(item);
