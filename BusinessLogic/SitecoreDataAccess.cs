@@ -19,7 +19,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
         #region Items
         public Item CreateSitecoreItem(TemplateItem template, Item parentItem, string itemName, Dictionary<string, string> fields, Language language)
         {
-            Item newItem = null;
+            Item newItem;
 
             using (new SecurityDisabler())
             {
