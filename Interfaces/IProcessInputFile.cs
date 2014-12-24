@@ -5,8 +5,10 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
 {
     public interface IProcessInputFile
     {
-       List< Sitecore.Data.Items.MediaItem> MediaFile { get; set; }
+        MediaItem MediaFile { get; set; }
         TemplateItem Template { get; set; }
-        List<Entities.ImportItem> ParseFile();
+        Item ParentFolder { get; set; }
+        bool UpdateExisting { get; set; }
+        List<Entities.Output> ParseFile(IParser parser);
     }
 }

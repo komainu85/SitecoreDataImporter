@@ -47,8 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataImport.cs" />
-    <Compile Include="IItemImporter.cs" />
+    <Compile Include="IParser.cs" />
     <Compile Include="IProcessInputFile.cs" />
     <Compile Include="ISitecoreDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

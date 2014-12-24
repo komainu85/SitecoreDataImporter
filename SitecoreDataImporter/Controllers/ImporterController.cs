@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using MikeRobbins.SitecoreDataImporter.Entities;
+using MikeRobbins.SitecoreDataImporter.Interfaces;
 using Newtonsoft.Json;
 using Sitecore.Data;
 using Sitecore.Data.Items;
@@ -14,24 +15,21 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
     public class ImporterController : Controller
     {
         readonly Database _master = Database.GetDatabase("master");
-  
+
         public ImporterController()
         {
             ObjectFactory.Initialize(x =>
             {
-                x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IDataImport>()
+                x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IParser>()
                     .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
                     .Named("CSV");
 
-                x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IDataImport>()
-                    .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
-                    .Named("DOCX");
+                //x.For<MikeRobbins.SitecoreDataImporter.Interfaces.IParser>()
+                //    .Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>()
+                //    .Named("DOCX");
 
                 x.For<SitecoreDataImporter.Interfaces.IProcessInputFile>()
                   .Add<SitecoreDataImporter.BusinessLogic.ProcessInputFile>();
-
-                x.For<SitecoreDataImporter.Interfaces.IItemImporter>()
-                  .Add<SitecoreDataImporter.BusinessLogic.ItemImporter>();
             });
         }
 
@@ -47,35 +45,46 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
             var templateItem = _master.GetTemplate(ID.Parse((selectedtemplateId)));
             var parentFolder = _master.GetItem(new ID(selectedFolderId));
 
-            var importItems = ProcessInputFiles(fileIds, templateItem);
-
-            return ImportSitecoreItems(importItems, templateItem.ID, parentFolder, update);
-        }
-   
-        private string ImportSitecoreItems(List<ImportItem> importItems, ID templateId, Item parentFolder, bool update)
-        {
-            if (importItems.Any())
-            {
-                var itemImporter = ObjectFactory.GetInstance<MikeRobbins.SitecoreDataImporter.Interfaces.IItemImporter>();
-
-                var resultOutput = itemImporter.ImportItems(importItems, templateId, parentFolder, update);
-
-                return JsonConvert.SerializeObject(resultOutput);
-            }
-            return "";
+            return ProcessInputFiles(fileIds, templateItem, parentFolder, update);
         }
 
-        private List<ImportItem> ProcessInputFiles(string fileIds, TemplateItem template)
+        private string ProcessInputFiles(string fileIds, TemplateItem template, Item parentFolder, bool update)
         {
+          var results = new List<Output>();
+
             var files = GetFilesFromMediaLibrary(fileIds);
 
-            var processInputFile = ObjectFactory.GetInstance<SitecoreDataImporter.Interfaces.IProcessInputFile>();
-            processInputFile.MediaFile = files;
-            processInputFile.Template = template;
+            IParser parser = null;
 
-            var importItems = processInputFile.ParseFile();
+            foreach (var file in files)
+            {
+                parser = GetParserFromExtension(file, parser);
 
-            return importItems;
+                var processInputFile = ObjectFactory.GetInstance<IProcessInputFile>();
+                processInputFile.MediaFile = file;
+                processInputFile.Template = template;
+                processInputFile.ParentFolder = parentFolder;
+                processInputFile.UpdateExisting = update;
+
+                results.AddRange(processInputFile.ParseFile(parser));
+            }
+
+            return JsonConvert.SerializeObject(results); ;
+        }
+
+        private static IParser GetParserFromExtension(MediaItem file, IParser parser)
+        {
+            var extension = file.Extension;
+
+            switch (extension)
+            {
+                case "csv":
+                    parser = ObjectFactory.GetNamedInstance<IParser>("CSV");
+                    break;
+                default:
+                    break;
+            }
+            return parser;
         }
 
         private List<MediaItem> GetFilesFromMediaLibrary(string fileNames)

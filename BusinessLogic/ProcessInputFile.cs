@@ -1,37 +1,82 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MikeRobbins.SitecoreDataImporter.BusinessLogic.Tools;
 using MikeRobbins.SitecoreDataImporter.Entities;
+using MikeRobbins.SitecoreDataImporter.Entities.Enums;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using Sitecore.Collections;
+using Sitecore.Data;
 using Sitecore.Data.Items;
+using Sitecore.Globalization;
+using Sitecore.SecurityModel;
 using StructureMap;
 
 namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
 {
     public class ProcessInputFile : IProcessInputFile
     {
-        public List<MediaItem> MediaFile { get; set; }
+        public MediaItem MediaFile { get; set; }
         public TemplateItem Template { get; set; }
+        public Item ParentFolder { get; set; }
+        public bool UpdateExisting { get; set; }
 
-        public List<ImportItem> ParseFile()
+        public List<Output> ParseFile(IParser parser)
         {
             var items = new List<ImportItem>();
 
-            foreach (var mediaFile in MediaFile)
-            {
-                var extension = mediaFile.Extension;
+            parser.MediaFile = MediaFile;
+            items.AddRange(parser.Parse());
 
-                switch (extension)
+            return ImportItems(items, Template.ID);
+        }
+
+        public List<Output> ImportItems(List<ImportItem> items, Sitecore.Data.ID templateID)
+        {
+            var output = new List<Output>();
+
+            var da = new SitecoreDataAccess();
+            var template = SitecoreDataAccess.GetTemplateByID(templateID);
+
+            var i = 1;
+
+            foreach (var item in items)
+            {
+                try
                 {
-                    case "csv":
-                        var csv = ObjectFactory.GetNamedInstance<IDataImport>("CSV");
-                        csv.MediaFile = mediaFile;
-                        items.AddRange(csv.Parse());
-                        break;
-                    default:
-                        break;
+                    var itemExists = da.DoesNameAtLevelExist(ParentFolder, item.Title);
+
+                    if (itemExists == null)
+                    {
+                        da.CreateSitecoreItem(template, ParentFolder, item.Title, item.Fields, item.Language);
+                        output.Add(new Output() { Number = i, Item = item.Title, Result = Result.Success.ToString() });
+                    }
+                    else
+                    {
+                        var langVersion = Sitecore.Data.Database.GetDatabase("master").GetItem(itemExists.ID, item.Language);
+
+                        if (UpdateExisting || langVersion.Versions.Count == 0)
+                        {
+                            da.UpdateSitecoreItem(itemExists, item.Fields, item.Language, langVersion.Versions.Count > 0);
+                            output.Add(new Output() { Number = i, Item = item.Title, Result = Result.Updated.ToString() });
+                        }
+                        else
+                        {
+                            output.Add(new Output() { Number = i, Item = item.Title, Result = Result.Skipped.ToString(), Reason = "Item already exists with this name" });
+                        }
+                    }
+
                 }
+                catch (Exception ex)
+                {
+                    output.Add(new Output() { Number = i, Item = !string.IsNullOrEmpty(item.Title) ? item.Title : "NAME MISSING!", Result = Result.Failure.ToString(), Reason = ex.Message });
+                }
+
+                i++;
             }
 
-            return items;
+            return output;
         }
+
     }
 }

@@ -64,7 +64,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemImporter.cs" />
     <Compile Include="Parsers\CsvParse.cs" />
     <Compile Include="ProcessInputFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
