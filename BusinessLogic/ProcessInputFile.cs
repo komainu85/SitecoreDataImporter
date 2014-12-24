@@ -28,16 +28,14 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
             parser.MediaFile = MediaFile;
             items.AddRange(parser.Parse());
 
-            return ImportItems(items, Template.ID);
+            return ImportItems(items);
         }
 
-        public List<Output> ImportItems(List<ImportItem> items, Sitecore.Data.ID templateID)
+        public List<Output> ImportItems(List<ImportItem> items)
         {
             var output = new List<Output>();
 
             var da = new SitecoreDataAccess();
-            var template = SitecoreDataAccess.GetTemplateByID(templateID);
-
             var i = 1;
 
             foreach (var item in items)
@@ -48,7 +46,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
 
                     if (itemExists == null)
                     {
-                        da.CreateSitecoreItem(template, ParentFolder, item.Title, item.Fields, item.Language);
+                        da.CreateSitecoreItem(Template, ParentFolder, item.Title, item.Fields, item.Language);
                         output.Add(new Output() { Number = i, Item = item.Title, Result = Result.Success.ToString() });
                     }
                     else

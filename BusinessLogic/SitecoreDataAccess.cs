@@ -27,28 +27,10 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic
                 var masterParent = MasterDb.GetItem(parentItem.ID, language);
                 newItem = masterParent.Add(itemName.ToSitecoreSafeString(),template);
 
-                AddItemToCaches(template, language, newItem);
-
                 SetFields(fields, newItem, language, false);
             }
 
             return newItem;
-        }
-
-        private static void AddItemToCaches(TemplateItem template, Language language, Item newItem)
-        {
-            var standardValues = new SafeDictionary<ID, string>();
-
-            foreach (Field standardValue in template.StandardValues.Fields)
-            {
-                standardValues.Add(standardValue.ID, standardValue.Value);
-            }
-
-            var itemInfo = new ItemInformation(newItem.InnerData.Definition);
-
-            MasterDb.Caches.ItemCache.AddItem(newItem.ID, language, newItem.Version, newItem);
-            MasterDb.Caches.DataCache.AddItemInformation(newItem.ID, itemInfo);
-            MasterDb.Caches.StandardValuesCache.AddStandardValues(newItem, standardValues);
         }
 
         public Item UpdateSitecoreItem(Item item, Dictionary<string, string> fields, Language language, bool createNewVersion)
