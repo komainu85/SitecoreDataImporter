@@ -41,17 +41,37 @@
     <Reference Include="Lucene.Net">
       <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
     </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="OpenXmlPowerTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\OpenXmlPowerTools.dll</HintPath>
+    </Reference>
     <Reference Include="Sitecore.Client">
       <HintPath>..\packages\Sitecore.8\lib\Sitecore.Client.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\packages\Sitecore.8\lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\packages\Sitecore.Dlls.8.0.141212.8.0.141212\lib\Sitecore.Kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Client">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Core">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure.Sitecore">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Infrastructure.Sitecore.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
@@ -66,6 +86,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -93,30 +114,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ImporterController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="DataAccess\FieldUpdater.cs" />
+    <Compile Include="Interfaces\IMediaReader.cs" />
+    <Compile Include="DataAccess\MediaReader.cs" />
+    <Compile Include="Interfaces\IItemCreator.cs" />
+    <Compile Include="DataAccess\ItemReader.cs" />
+    <Compile Include="Entities\DataItem.cs" />
+    <Compile Include="Interfaces\IFieldUpdater.cs" />
+    <Compile Include="DataAccess\ItemCreator.cs" />
+    <Compile Include="DataAccess\ItemUpdater.cs" />
+    <Compile Include="DataAccess\SitecoreDataAccess.cs" />
+    <Compile Include="Enums\Result.cs" />
+    <Compile Include="Entities\ImportItem.cs" />
+    <Compile Include="Interfaces\IParser.cs" />
+    <Compile Include="Interfaces\ISitecoreDataAccess.cs" />
+    <Compile Include="IoC\Registry.cs" />
+    <Compile Include="Mapper\ItemMapper.cs" />
+    <Compile Include="Parsers\CsvParse.cs" />
+    <Compile Include="Interfaces\IFieldReader.cs" />
+    <Compile Include="Parsers\FieldReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ItemRespository.cs" />
+    <Compile Include="Utilities\SitecoreUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataImporter.js" />
+    <Content Include="Lib\LumenWorks.Framework.IO.dll" />
+    <Content Include="Lib\OpenXmlPowerTools.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="App_Config\Include\MikeRobbinsSpeak.Importer.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{001f6fa3-05d5-4534-8e31-259ffcf2bfe7}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{c41dd892-d6fc-4ee0-a486-241f9bff22db}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{2411d740-52ee-4f4a-8406-73080b9a336f}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

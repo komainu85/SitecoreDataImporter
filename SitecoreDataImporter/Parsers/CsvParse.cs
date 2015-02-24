@@ -3,6 +3,7 @@ using System.IO;
 using LumenWorks.Framework.IO.Csv;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using MikeRobbins.SitecoreDataImporter.Utilities;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
@@ -15,7 +16,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
         public List<ImportItem> Parse()
         {
             var items = new List<ImportItem>();
-            var language = Tools.Tools.GetLanguageFromFile(MediaFile.Name);
+            var language = SitecoreUtilities.GetLanguageFromFile(MediaFile.Name);
 
             using (var csv = new CsvReader(new StreamReader(MediaFile.GetMediaStream()), true))
             {

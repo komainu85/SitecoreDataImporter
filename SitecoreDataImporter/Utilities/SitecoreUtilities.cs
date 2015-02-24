@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using MikeRobbins.SitecoreDataImporter.DataAccess;
+using Sitecore.Data;
 using Sitecore.Globalization;
 
-namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Tools
+namespace MikeRobbins.SitecoreDataImporter.Utilities
 {
-    public static class Tools
+    public static class SitecoreUtilities
     {
         private const string RegionRegEx = "[a-z]{2,3}-[A-Z]{2}";
 
@@ -49,6 +51,15 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Tools
             DateTime.TryParse(value, out date);
 
             return Sitecore.DateUtil.ToIsoDate(date);
+        }
+
+        public static ID ParseId(string id)
+        {
+            var sID = ID.Null;
+
+            ID.TryParse(id, out sID);
+
+            return sID;
         }
 
         public static string StripHTML(string value)
