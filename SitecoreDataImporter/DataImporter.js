@@ -1,78 +1,21 @@
-﻿define(["sitecore"], function (Sitecore) {
-    var DataImporter = Sitecore.Definitions.App.extend({
+﻿var __extends = this.__extends || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    __.prototype = b.prototype;
+    d.prototype = new __();
+};
+var Speak = require("sitecore/shell/client/Speak/Assets/lib/core/1.2/SitecoreSpeak");
 
-        filesUploaded: [],
+var Dataimporter = (function (_super) {
+    __extends(Dataimporter, _super);
+    function Dataimporter() {
+        _super.apply(this, arguments);
+    }
+    Dataimporter.prototype.initialize = function () {
+        alert("hello World");
+    };
+    return Dataimporter;
+})(Speak.PageCode);
+;
 
-        initialized: function () { },
-
-        initialize: function () {
-
-            var fileUploaded = function (model) {
-                this.filesUploaded.push(model.itemId);
-
-                this.upFiles.viewModel.refreshNumberFiles();
-
-                if (this.upFiles.viewModel.globalPercentage() == 100) {
-
-                    if (this.upFiles.viewModel.totalFiles() == 1) {
-                           this.ImportData();
-                    }
-                }
-            };
-
-            this.on("upload-fileUploaded", fileUploaded, this);
-
-        },
-
-        UploadFiles: function () {
-            this.pi.viewModel.show();
-
-            if (this.upFiles.viewModel.totalFiles() > 0) {
-                this.upFiles.viewModel.upload();
-            } else {
-                this.messageBar.addMessage("warning", "Please select file(s) to import");
-                this.pi.viewModel.hide();
-            }
-
-        },
-
-        ImportData: function () {
-            var template = this.tvTemplate.viewModel.selectedNode();
-            var folder = this.tvLocation.viewModel.selectedNode();
-            var update = this.cbUpdate.viewModel.isChecked();
-
-            if (template == null) {
-                this.messageBar.addMessage("warning", "Please select a template to import");
-            }
-
-            if (folder == null) {
-                this.messageBar.addMessage("warning", "Please select a import location");
-            }
-
-            if (template == null || folder == null) {
-                return;
-            }
-
-            $.ajax({
-                url: "/api/sitecore/Importer/Import",
-                type: "POST",
-                data: { template: template.key, folder: folder.key, update: update, fileIds: this.filesUploaded.toString() },
-                context: this,
-                success: function (data) {
-
-                    this.summary.viewModel.show();
-
-                    var json = jQuery.parseJSON(data);
-
-                    for (var i = 0; i < json.length; i++) {
-                        var obj = json[i];
-                        this.JsonDS.add(obj);
-                    }
-                }
-            });
-            this.pi.viewModel.hide();
-        },
-    });
-
-    return DataImporter;
-});
+Sitecore.Speak.pageCode(["bootstrap", "scPipeline"], new Dataimporter());

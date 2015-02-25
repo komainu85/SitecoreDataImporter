@@ -11,7 +11,6 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
         public Registry()
         {
             For<MikeRobbins.SitecoreDataImporter.Interfaces.IParser>().Add<SitecoreDataImporter.BusinessLogic.Parsers.CsvParse>().Named("CSV");
-            For<SitecoreDataImporter.Interfaces.IProcessInputFile>().Add<SitecoreDataImporter.BusinessLogic.ProcessInputFile>();
         }
     }
 }

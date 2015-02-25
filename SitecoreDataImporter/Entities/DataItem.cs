@@ -11,6 +11,6 @@ namespace MikeRobbins.SitecoreDataImporter.Entities
         public string Name { get; set; }
         public Guid TemplateId { get; set; }
         public Guid ParentId { get; set; }
-        public Guid MediaItem { get; set; }
+        public Guid MediaItemId { get; set; }
     }
 }

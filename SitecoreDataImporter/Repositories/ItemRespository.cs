@@ -37,7 +37,7 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             IMediaReader mediaReader = _container.GetInstance<IMediaReader>();
             IFieldReader fieldReader = _container.GetInstance<IFieldReader>();
 
-            var mediaItem = mediaReader.GetMediaItem(entity.MediaItem);
+            var mediaItem = mediaReader.GetMediaItem(entity.MediaItemId);
 
             var fields = fieldReader.GetFieldsFromMediaItem(mediaItem);
 

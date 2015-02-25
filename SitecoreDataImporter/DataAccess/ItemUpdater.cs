@@ -24,9 +24,7 @@ namespace MikeRobbins.EntityServiceDemo.DataAccess
 
             if (!id.IsNull)
             {
-                var item = _iNewsReader.GetNewsItem(id);
-
-                _iFieldUpdater.AddFieldsToItem(item, newsArticle);
+               
             }
         }
 

@@ -12,16 +12,13 @@ namespace MikeRobbins.EntityServiceDemo.DataAccess
     public class ItemReader
     {
 
-
         public void GetItem(string id)
         {
-            var id = SitecoreUtilities.ParseId(id);
+            var sId = SitecoreUtilities.ParseId(id);
 
-            if (!id.IsNull)
+            if (!sId.IsNull)
             {
-                var item = _iNewsReader.GetNewsItem(id);
-
-                _iFieldUpdater.AddFieldsToItem(item, newsArticle);
+               
             }
         }
 

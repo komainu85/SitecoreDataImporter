@@ -13,7 +13,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
         public MediaItem MediaFile { get; set; }
         public List<string> Documents { get; set; }
 
-        public List<ImportItem> Parse()
+        public Dictionary<string, string> ParseMediaItem()
         {
             var items = new List<ImportItem>();
             var language = SitecoreUtilities.GetLanguageFromFile(MediaFile.Name);
@@ -40,7 +40,7 @@ namespace MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers
                     items.Add(item);
                 }
             }
-            return items;
+            return null;
         }
     }
 }
