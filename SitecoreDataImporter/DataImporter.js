@@ -9,10 +9,11 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
         filesUploaded: [],
 
-        initialized: function () { },
+        initialized: function() {
+        },
 
         initialize: function () {
-            this.on("upload-fileUploaded", this.fileUploaded, this);
+            this.on("upload-fileUploaded", this.FileUploaded, this);
         },
 
         EntityServiceConfig: function () {
@@ -37,8 +38,8 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
         },
 
         ImportData: function () {
-            var template = this.tvTemplate.viewModel.selectedNode();
-            var folder = this.tvLocation.viewModel.selectedNode();
+            var template = this.tvTemplate.viewModel.selectedItemId();
+            var folder = this.tvLocation.viewModel.selectedItemId();
             var update = this.cbUpdate.viewModel.isChecked();
 
             if (template == null) {
@@ -55,16 +56,16 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
             var itemService = this.EntityServiceConfig();
 
-            for (var i = 0; i < filesUploaded.length; i++) {
+            for (var i = 0; i < this.filesUploaded.length; i++) {
 
                 var item = {
                     TemplateId: template,
                     ParentId: folder,
-                    MediaItemId: filesUploaded[i]
+                    MediaItemId: this.filesUploaded[i]
                 };
 
                 var result = itemService.create(item).execute().then(function (item) {
-             
+
                 });
             }
 
@@ -94,17 +95,14 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
             this.pi.viewModel.hide();
         },
 
-        FileUploaded: function () {
+        FileUploaded: function (model) {
 
             this.filesUploaded.push(model.itemId);
 
             this.upFiles.viewModel.refreshNumberFiles();
 
             if (this.upFiles.viewModel.globalPercentage() === 100) {
-
-                if (this.upFiles.viewModel.totalFiles() === 1) {
-                    this.ImportData();
-                }
+                this.ImportData();
             }
         }
     });

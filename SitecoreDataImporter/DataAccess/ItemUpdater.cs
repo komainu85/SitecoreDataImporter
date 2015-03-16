@@ -1,31 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MikeRobbins.SitecoreDataImporter.Entities;
+﻿using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Utilities;
-using Sitecore.Data.Items;
 
-namespace MikeRobbins.EntityServiceDemo.DataAccess
+namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
-    public class ItemUpdater
+    public class ItemUpdater : IItemUpdater
     {
         private IFieldUpdater _iFieldUpdater = null;
+        private IItemReader _itemReader = null;
 
-        public ItemUpdater(IFieldUpdater iFieldUpdater)
+        public ItemUpdater(IFieldUpdater iFieldUpdater, IItemReader itemReader)
         {
             _iFieldUpdater = iFieldUpdater;
+            _itemReader = itemReader;
         }
 
-        public void UpdateItem(ImportItem importItem)
+        public void UpdateItem(DataItem dataItem)
         {
-            var id = SitecoreUtilities.ParseId(importItem.ID);
+            var item = _itemReader.GetItem(dataItem.Id);
 
-            if (!id.IsNull)
-            {
-               
-            }
+            _iFieldUpdater.AddFieldsToItem(item,dataItem);
         }
 
     }

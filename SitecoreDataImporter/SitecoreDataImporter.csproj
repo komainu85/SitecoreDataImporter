@@ -74,11 +74,13 @@
     <Reference Include="Sitecore.Services.Infrastructure.Sitecore">
       <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Infrastructure.Sitecore.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="StructureMap, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
+    <Reference Include="StructureMap.Net4, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -125,6 +127,8 @@
   <ItemGroup>
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="DataAccess\FieldUpdater.cs" />
+    <Compile Include="Interfaces\IItemReader.cs" />
+    <Compile Include="Interfaces\IItemUpdater.cs" />
     <Compile Include="Interfaces\IMediaReader.cs" />
     <Compile Include="DataAccess\MediaReader.cs" />
     <Compile Include="Interfaces\IItemCreator.cs" />
@@ -138,7 +142,7 @@
     <Compile Include="Entities\ImportItem.cs" />
     <Compile Include="Interfaces\IParser.cs" />
     <Compile Include="Interfaces\ISitecoreDataAccess.cs" />
-    <Compile Include="IoC\Registry.cs" />
+    <Compile Include="IoC\IoCRegistry.cs" />
     <Compile Include="Mapper\ItemMapper.cs" />
     <Compile Include="Parsers\CsvParse.cs" />
     <Compile Include="Interfaces\IFieldReader.cs" />
@@ -153,7 +157,7 @@
     <Compile Include="Utilities\SitecoreUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataImporter1.js" />
+    <Content Include="DataImporter.js" />
     <Content Include="Lib\LumenWorks.Framework.IO.dll" />
     <Content Include="Lib\OpenXmlPowerTools.dll" />
   </ItemGroup>

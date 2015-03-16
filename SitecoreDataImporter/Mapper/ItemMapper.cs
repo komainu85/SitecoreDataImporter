@@ -19,6 +19,6 @@ namespace MikeRobbins.SitecoreDataImporter.Mapper
             dataItem.Url = item.Paths.ContentPath;
 
             return dataItem;
-        }
+        }    
     }
 }

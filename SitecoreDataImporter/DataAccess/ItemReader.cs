@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
+﻿using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Utilities;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 
-namespace MikeRobbins.EntityServiceDemo.DataAccess
+namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
-    public class ItemReader
+    public class ItemReader : IItemReader
     {
-
-        public void GetItem(string id)
+        public Item GetItem(ID id)
         {
+            return Sitecore.Context.Database.GetItem(id);
+
+        }
+
+        public Item GetItem(string id)
+        {
+            Item item = null;
+
             var sId = SitecoreUtilities.ParseId(id);
 
             if (!sId.IsNull)
             {
-               
+                item = GetItem(sId);
             }
+
+            return item;
         }
 
     }

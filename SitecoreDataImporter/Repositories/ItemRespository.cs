@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 using MikeRobbins.SitecoreDataImporter.DataAccess;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using Sitecore.Diagnostics.PerformanceCounters;
 using StructureMap;
-using StructureMap.Configuration.DSL;
+using MikeRobbins.SitecoreDataImporter.IoC;
 
 namespace MikeRobbins.SitecoreDataImporter.Repositories
 {
@@ -18,7 +19,7 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
         public ItemRespository()
         {
-            _container = new Container(new Registry());
+            _container = new Container(new IoCRegistry());
         }
 
         public IQueryable<DataItem> GetAll()
@@ -46,12 +47,15 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
         public bool Exists(DataItem entity)
         {
-            throw new NotImplementedException();
+            return false;
         }
 
         public void Update(DataItem entity)
         {
-            throw new NotImplementedException();
+            IItemUpdater itemUpdater = _container.GetInstance<IItemUpdater>();
+
+            itemUpdater.UpdateItem(entity);
+
         }
 
         public void Delete(DataItem entity)
