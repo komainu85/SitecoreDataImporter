@@ -7,5 +7,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
     {
         Item GetItem(ID id);
         Item GetItem(string id);
+        TemplateItem GetTemplateItem(string id);
     }
 }

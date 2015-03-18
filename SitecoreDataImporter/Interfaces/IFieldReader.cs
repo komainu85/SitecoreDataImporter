@@ -6,6 +6,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
 {
     public interface IFieldReader
     {
-        Dictionary<string, string> GetFieldsFromMediaItem(MediaItem file);
+        List<ImportItem> GetFieldsFromMediaItem(MediaItem file);
     }
 }

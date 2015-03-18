@@ -17,11 +17,11 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
         public TemplateItem Template { get; set; }
         public Item ParentItem { get; set; }
 
-        public void CreateItem(DataItem dataitem, Dictionary<string, string> fields)
+        public void CreateItem(ImportItem importItem)
         {
-            var newItem = ParentItem.Add(dataitem.Name, Template);
+            var newItem = ParentItem.Add(importItem.Title, Template);
 
-            _iFieldUpdater.AddFieldsToItem(newItem, dataitem);
+            _iFieldUpdater.AddFieldsToItem(newItem, importItem.Fields);
         }
     }
 }

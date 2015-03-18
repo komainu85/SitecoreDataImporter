@@ -37,12 +37,19 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             IItemCreator itemCreator = _container.GetInstance<IItemCreator>();
             IMediaReader mediaReader = _container.GetInstance<IMediaReader>();
             IFieldReader fieldReader = _container.GetInstance<IFieldReader>();
+            IItemReader itemReader = _container.GetInstance<IItemReader>();
 
             var mediaItem = mediaReader.GetMediaItem(entity.MediaItemId);
 
-            var fields = fieldReader.GetFieldsFromMediaItem(mediaItem);
+            var importItems = fieldReader.GetFieldsFromMediaItem(mediaItem);
 
-            itemCreator.CreateItem(entity, fields);
+            foreach (var importItem in importItems)
+            {
+                itemCreator.ParentItem =itemReader.GetItem(entity.ParentId.ToString());
+                itemCreator.Template = itemReader.GetTemplateItem(entity.TemplateId.ToString()); ;
+
+                itemCreator.CreateItem(importItem);
+            }
         }
 
         public bool Exists(DataItem entity)

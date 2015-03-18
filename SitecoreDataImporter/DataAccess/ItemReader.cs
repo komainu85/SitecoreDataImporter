@@ -9,7 +9,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
     {
         public Item GetItem(ID id)
         {
-            return Sitecore.Context.Database.GetItem(id);
+            return Sitecore.Data.Database.GetDatabase("master").GetItem(id);
 
         }
 
@@ -27,5 +27,17 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
             return item;
         }
 
+        public TemplateItem GetTemplateItem(string id)
+        {
+            Item templateItem = null;
+            var item = GetItem(id);
+
+            if (item != null)
+            {
+                templateItem = (TemplateItem)item;
+            }
+
+            return templateItem;
+        }
     }
 }

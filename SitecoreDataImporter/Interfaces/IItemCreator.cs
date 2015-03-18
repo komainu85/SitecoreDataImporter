@@ -8,6 +8,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
     {
         TemplateItem Template { get; set; }
         Item ParentItem { get; set; }
-        void CreateItem(DataItem dataitem, Dictionary<string, string> fields);
+        void CreateItem(ImportItem importItem);
     }
 }

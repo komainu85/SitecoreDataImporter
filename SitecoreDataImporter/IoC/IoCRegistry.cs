@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MikeRobbins.SitecoreDataImporter.BusinessLogic.Parsers;
 using MikeRobbins.SitecoreDataImporter.DataAccess;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Parsers;
@@ -21,6 +20,7 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
             For<IFieldUpdater>().Use<FieldUpdater>();
             For<IFieldReader>().Use<FieldReader>();
             For<IItemUpdater>().Use<ItemUpdater>();
+            For<IItemReader>().Use<ItemReader>();
         }
     }
 }

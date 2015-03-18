@@ -56,9 +56,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\OpenXmlPowerTools.dll</HintPath>
     </Reference>
-    <Reference Include="Sitecore.Client">
-      <HintPath>..\packages\Sitecore.8\lib\Sitecore.Client.dll</HintPath>
-    </Reference>
     <Reference Include="Sitecore.Kernel">
       <HintPath>..\packages\Sitecore.Dlls.8.0.141212.8.0.141212\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
@@ -192,4 +189,8 @@
     <TypeScriptTarget>ES3</TypeScriptTarget>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Q /Y "$(TargetDir)$(TargetName).*" "C:\inetpub\wwwroot\MikeRobbins8u2\website\bin\"
+xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u2\website\sitecore\shell\client\MikeRobbins\SitecoreDataImporter\DataImporter.js"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
