@@ -134,7 +134,6 @@
     <Compile Include="Interfaces\IFieldUpdater.cs" />
     <Compile Include="DataAccess\ItemCreator.cs" />
     <Compile Include="DataAccess\ItemUpdater.cs" />
-    <Compile Include="DataAccess\SitecoreDataAccess.cs" />
     <Compile Include="Enums\Result.cs" />
     <Compile Include="Entities\ImportItem.cs" />
     <Compile Include="Interfaces\IParser.cs" />

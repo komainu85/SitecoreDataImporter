@@ -37,7 +37,6 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             IItemCreator itemCreator = _container.GetInstance<IItemCreator>();
             IMediaReader mediaReader = _container.GetInstance<IMediaReader>();
             IFieldReader fieldReader = _container.GetInstance<IFieldReader>();
-            IItemReader itemReader = _container.GetInstance<IItemReader>();
 
             var mediaItem = mediaReader.GetMediaItem(entity.MediaItemId);
 
@@ -45,8 +44,8 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
             foreach (var importItem in importItems)
             {
-                itemCreator.ParentItem =itemReader.GetItem(entity.ParentId.ToString());
-                itemCreator.Template = itemReader.GetTemplateItem(entity.TemplateId.ToString()); ;
+                itemCreator.ParentItemId = entity.ParentId;
+                itemCreator.TemplateId = entity.TemplateId;
 
                 itemCreator.CreateItem(importItem);
             }
@@ -54,7 +53,11 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
         public bool Exists(DataItem entity)
         {
-            return false;
+            IItemReader itemReader = _container.GetInstance<IItemReader>();
+
+            var parent = itemReader.GetItem(entity.ParentId.ToString());
+
+            return itemReader.ItemExists(parent, entity.Name);
         }
 
         public void Update(DataItem entity)

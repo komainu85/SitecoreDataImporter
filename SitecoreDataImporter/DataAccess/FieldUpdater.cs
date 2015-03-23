@@ -27,7 +27,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
                     if (field != null && key!="Id")
                     {
-                        UpdateFieldValue<T>(field, value);
+                        UpdateFieldValue(field, value);
                     }
                 }
 
@@ -42,7 +42,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
         }
 
-        public void AddFieldsToItem<T>(Item item, Dictionary<string, string> fields)
+        public void AddFieldsDictionaryToItem(Item item, Dictionary<string, string> fields)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
                     if (field != null && key != "Id")
                     {
-                        UpdateFieldValue<T>(field, value);
+                        UpdateFieldValue(field, value);
                     }
                 }
 
@@ -71,7 +71,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
             } 
         }
 
-        private static void UpdateFieldValue<T>(Field field, object value)
+        private static void UpdateFieldValue(Field field, object value)
         {
             if (field.Type == "Date")
             {

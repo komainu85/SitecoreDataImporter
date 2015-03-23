@@ -7,6 +7,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
     {
         void AddFieldsToItem<T>(Item item, T sourceObject);
 
-        void AddFieldsToItem<T>(Item item, Dictionary<string,string> fields );
+        void AddFieldsDictionaryToItem(Item item, Dictionary<string,string> fields );
     }
 }

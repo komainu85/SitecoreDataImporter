@@ -62,6 +62,16 @@ namespace MikeRobbins.SitecoreDataImporter.Utilities
             return sID;
         }
 
+        public static ID ParseId(Guid id)
+        {
+            var sID = ID.Null;
+
+            ID.TryParse(id, out sID);
+
+            return sID;
+        }
+
+
         public static string StripHTML(string value)
         {
             var noHTML = Regex.Replace(value, @"<[^>]+>|&nbsp;", "").Trim();
