@@ -42,12 +42,16 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
             var importItems = fieldReader.GetFieldsFromMediaItem(mediaItem);
 
+            var importResults = new List<Item>();
+
             foreach (var importItem in importItems)
             {
                 itemCreator.ParentItemId = entity.ParentId;
                 itemCreator.TemplateId = entity.TemplateId;
 
-                itemCreator.CreateItem(importItem);
+                var newItem = itemCreator.CreateItem(importItem);
+
+                importResults.Add(newItem);
             }
         }
 

@@ -20,7 +20,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
         public Guid TemplateId { get; set; }
         public Guid ParentItemId { get; set; }
 
-        public void CreateItem(ImportItem importItem)
+        public Item CreateItem(ImportItem importItem)
         {
             var parentItem = _itemReader.GetItem(ParentItemId);
             var template = _itemReader.GetTemplateItem(TemplateId);
@@ -28,6 +28,20 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
             var newItem = parentItem.Add(importItem.Title, template);
 
             _iFieldUpdater.AddFieldsDictionaryToItem(newItem, importItem.Fields);
+
+            return newItem;
+        }
+
+        public Item CreateItem(string title, Dictionary<string,string> fields)
+        {
+            var parentItem = _itemReader.GetItem(ParentItemId);
+            var template = _itemReader.GetTemplateItem(TemplateId);
+
+            var newItem = parentItem.Add(title, template);
+
+            _iFieldUpdater.AddFieldsDictionaryToItem(newItem, fields);
+
+            return newItem;
         }
     }
 }

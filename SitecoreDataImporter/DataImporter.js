@@ -70,7 +70,6 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
             }
 
 
-
             //$.ajax({
             //    url: "/api/sitecore/Importer/Import",
             //    type: "POST",
@@ -94,6 +93,7 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
             this.pi.viewModel.hide();
         },
+
 
         FileUploaded: function (model) {
 
