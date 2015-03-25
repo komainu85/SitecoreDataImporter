@@ -9,7 +9,7 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
         filesUploaded: [],
 
-        initialized: function() {
+        initialized: function () {
         },
 
         initialize: function () {
@@ -67,6 +67,8 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
                 var result = itemService.create(item).execute().then(function (item) {
 
                 });
+
+                this.GetImportAudit();
             }
 
 
@@ -92,6 +94,33 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
 
             this.pi.viewModel.hide();
+        },
+
+        GetImportAudit: function () {
+            $.ajax({
+                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/GetImportAudit",
+                type: "GET",
+                context: this,
+                success: function (data) {
+
+                    this.summary.viewModel.show();
+
+                    var json = jQuery.parseJSON(data);
+
+                    for (var i = 0; i < json.ImportedItems.length; i++) {
+                        var obj = json.ImportedItems[i];
+
+                        var result = {
+                            Title: obj,
+                            Result: "imported successfully"
+                        };
+
+                        this.JsonDS.add(result);
+                    }
+                }
+            });
+
+
         },
 
 

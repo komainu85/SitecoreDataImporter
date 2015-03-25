@@ -22,6 +22,7 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
             For<IItemUpdater>().Use<ItemUpdater>();
             For<IItemReader>().Use<ItemReader>();
             For<IAuditCreator>().Use<AuditCreator>();
+            For<IAuditReader>().Use<AuditReader>();
         }
     }
 }

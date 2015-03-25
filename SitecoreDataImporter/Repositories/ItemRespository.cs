@@ -13,7 +13,7 @@ using MikeRobbins.SitecoreDataImporter.IoC;
 
 namespace MikeRobbins.SitecoreDataImporter.Repositories
 {
-    public class ItemRespository : Sitecore.Services.Core.IRepository<DataItem>
+    public class ItemRespository : ICustomRepositoryActions<DataItem>
     {
         private Container _container;
 
@@ -37,6 +37,7 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             IItemCreator itemCreator = _container.GetInstance<IItemCreator>();
             IMediaReader mediaReader = _container.GetInstance<IMediaReader>();
             IFieldReader fieldReader = _container.GetInstance<IFieldReader>();
+            IAuditCreator auditCreator = _container.GetInstance<IAuditCreator>();
 
             var mediaItem = mediaReader.GetMediaItem(entity.MediaItemId);
 
@@ -53,6 +54,8 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
                 importResults.Add(newItem);
             }
+
+            auditCreator.CreateAudit(importResults);
         }
 
         public bool Exists(DataItem entity)
@@ -75,6 +78,13 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
         public void Delete(DataItem entity)
         {
             throw new NotImplementedException();
+        }
+
+        public ImportAudit GetImportAudit()
+        {
+            IAuditReader auditReader = _container.GetInstance<IAuditReader>();
+
+            return auditReader.GetLatestAudit();
         }
     }
 }

@@ -124,8 +124,12 @@
   <ItemGroup>
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="DataAccess\AuditCreator.cs" />
+    <Compile Include="DataAccess\AuditReader.cs" />
     <Compile Include="DataAccess\FieldUpdater.cs" />
+    <Compile Include="Entities\ImportAudit.cs" />
+    <Compile Include="Interfaces\IAuditReader.cs" />
     <Compile Include="Interfaces\IAuditCreator.cs" />
+    <Compile Include="Interfaces\ICustomRepositoryActions.cs" />
     <Compile Include="Interfaces\IItemReader.cs" />
     <Compile Include="Interfaces\IItemUpdater.cs" />
     <Compile Include="Interfaces\IMediaReader.cs" />

@@ -100,21 +100,6 @@ namespace MikeRobbins.SitecoreDataImporter.Utilities
             return value.Replace("xmlns=\"http://www.w3.org/1999/xhtml\"", "").Trim();
         }
 
-        public static Language GetLanguageFromFile(string fileName)
-        {
-            var matches = Regex.Match(fileName, RegionRegEx);
-
-            var langCode = "";
-
-            if (matches.Success)
-            {
-                langCode = matches.Groups[0].Value;
-            }
-
-            var da = new SitecoreDataAccess();
-            return da.GetLanguage(langCode);
-        }
-
         public static string GetDocumentTitleFromFile(string fileName, string extension)
         {
             var matches = Regex.Match(fileName, RegionRegEx);
