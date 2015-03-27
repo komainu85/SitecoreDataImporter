@@ -105,13 +105,11 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
                     this.summary.viewModel.show();
 
-                    var json = jQuery.parseJSON(data);
-
-                    for (var i = 0; i < json.ImportedItems.length; i++) {
-                        var obj = json.ImportedItems[i];
+                    for (var i = 0; i < data.ImportedItems.length; i++) {
+                        var obj = data.ImportedItems[i];
 
                         var result = {
-                            Title: obj,
+                            Name: obj,
                             Result: "imported successfully"
                         };
 
