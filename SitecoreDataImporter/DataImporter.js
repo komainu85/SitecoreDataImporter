@@ -1,27 +1,15 @@
-﻿define(["sitecore"], function (Sitecore) {
+﻿
+
+define(["sitecore"], function (Sitecore) {
     var DataImporter = Sitecore.Definitions.App.extend({
 
         filesUploaded: [],
 
-        initialized: function () { },
+        initialized: function () {
+        },
 
         initialize: function () {
-
-            var fileUploaded = function (model) {
-                this.filesUploaded.push(model.itemId);
-
-                this.upFiles.viewModel.refreshNumberFiles();
-
-                if (this.upFiles.viewModel.globalPercentage() == 100) {
-
-                    if (this.upFiles.viewModel.totalFiles() == 1) {
-                           this.ImportData();
-                    }
-                }
-            };
-
-            this.on("upload-fileUploaded", fileUploaded, this);
-
+            this.on("upload-fileUploaded", this.FileUploaded, this);
         },
 
         UploadFiles: function () {
@@ -37,8 +25,8 @@
         },
 
         ImportData: function () {
-            var template = this.tvTemplate.viewModel.selectedNode();
-            var folder = this.tvLocation.viewModel.selectedNode();
+            var template = this.tvTemplate.viewModel.selectedItemId();
+            var folder = this.tvLocation.viewModel.selectedItemId();
             var update = this.cbUpdate.viewModel.isChecked();
 
             if (template == null) {
@@ -53,25 +41,87 @@
                 return;
             }
 
+            for (var i = 0; i < this.filesUploaded.length; i++) {
+
+                var item = {
+                    TemplateId: template,
+                    ParentId: folder,
+                    MediaItemId: this.filesUploaded[i]
+                };
+            
+                $.ajax({
+                    url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/ImportItems",
+                    type: "PUT",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(item)
+                });
+
+
+                this.GetImportAudit();
+            }
+
+
+            //$.ajax({
+            //    url: "/api/sitecore/Importer/Import",
+            //    type: "POST",
+            //    data: { template: template.key, folder: folder.key, update: update, fileIds: this.filesUploaded.toString() },
+            //    context: this,
+            //    success: function (data) {
+
+            //        this.summary.viewModel.show();
+
+            //        var json = jQuery.parseJSON(data);
+
+            //        for (var i = 0; i < json.length; i++) {
+            //            var obj = json[i];
+            //            this.JsonDS.add(obj);
+            //        }
+            //    }
+            //});
+
+
+
+
+            this.pi.viewModel.hide();
+        },
+
+        GetImportAudit: function () {
             $.ajax({
-                url: "/api/sitecore/Importer/Import",
-                type: "POST",
-                data: { template: template.key, folder: folder.key, update: update, fileIds: this.filesUploaded.toString() },
+                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/GetImportAudit",
+                type: "GET",
                 context: this,
                 success: function (data) {
 
                     this.summary.viewModel.show();
 
-                    var json = jQuery.parseJSON(data);
+                    for (var i = 0; i < data.ImportedItems.length; i++) {
+                        var obj = data.ImportedItems[i];
 
-                    for (var i = 0; i < json.length; i++) {
-                        var obj = json[i];
-                        this.JsonDS.add(obj);
+                        var result = {
+                            Name: obj,
+                            Result: "imported successfully"
+                        };
+
+                        this.JsonDS.add(result);
                     }
                 }
             });
-            this.pi.viewModel.hide();
+
+
         },
+
+
+        FileUploaded: function (model) {
+
+            this.filesUploaded.push(model.itemId);
+
+            this.upFiles.viewModel.refreshNumberFiles();
+
+            if (this.upFiles.viewModel.globalPercentage() === 100) {
+                this.ImportData();
+            }
+        }
     });
 
     return DataImporter;
