@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Lucene.Net.Util;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using Sitecore.Data;
 using Sitecore.Data.Items;

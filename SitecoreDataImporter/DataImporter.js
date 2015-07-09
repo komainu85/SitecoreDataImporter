@@ -1,10 +1,6 @@
-﻿require.config({
-    paths: {
-        entityService: "/sitecore/shell/client/Services/Assets/lib/entityservice"
-    }
-});
+﻿
 
-define(["sitecore", "entityService"], function (Sitecore, entityService) {
+define(["sitecore"], function (Sitecore) {
     var DataImporter = Sitecore.Definitions.App.extend({
 
         filesUploaded: [],
@@ -14,15 +10,6 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
 
         initialize: function () {
             this.on("upload-fileUploaded", this.FileUploaded, this);
-        },
-
-        EntityServiceConfig: function () {
-            var itemService = new entityService({
-                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item"
-            });
-
-
-            return itemService;
         },
 
         UploadFiles: function () {
@@ -54,8 +41,6 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
                 return;
             }
 
-            var itemService = this.EntityServiceConfig();
-
             for (var i = 0; i < this.filesUploaded.length; i++) {
 
                 var item = {
@@ -63,10 +48,15 @@ define(["sitecore", "entityService"], function (Sitecore, entityService) {
                     ParentId: folder,
                     MediaItemId: this.filesUploaded[i]
                 };
-
-                var result = itemService.create(item).execute().then(function (item) {
-
+            
+                $.ajax({
+                    url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/ImportItems",
+                    type: "PUT",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(item)
                 });
+
 
                 this.GetImportAudit();
             }
