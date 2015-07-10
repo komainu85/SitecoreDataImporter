@@ -39,9 +39,6 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net">
-      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
-    </Reference>
     <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\LumenWorks.Framework.IO.dll</HintPath>
@@ -49,8 +46,9 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="OpenXmlPowerTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -140,13 +138,12 @@
     <Compile Include="Interfaces\IFieldUpdater.cs" />
     <Compile Include="DataAccess\ItemCreator.cs" />
     <Compile Include="DataAccess\ItemUpdater.cs" />
-    <Compile Include="Enums\Result.cs" />
     <Compile Include="Entities\ImportItem.cs" />
     <Compile Include="Interfaces\IParser.cs" />
     <Compile Include="Interfaces\ISitecoreDataAccess.cs" />
     <Compile Include="IoC\IoCRegistry.cs" />
-    <Compile Include="Mapper\ItemMapper.cs" />
-    <Compile Include="Parsers\CsvParse.cs" />
+    <Compile Include="Parsers\JsonParser.cs" />
+    <Compile Include="Parsers\CsvParser.cs" />
     <Compile Include="Interfaces\IFieldReader.cs" />
     <Compile Include="Parsers\FieldReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,7 +158,6 @@
   <ItemGroup>
     <Content Include="DataImporter.js" />
     <Content Include="Lib\LumenWorks.Framework.IO.dll" />
-    <Content Include="Lib\OpenXmlPowerTools.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -196,6 +192,6 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /Q /Y "$(TargetDir)$(TargetName).*" "C:\inetpub\wwwroot\MikeRobbins8u4\website\bin\"
-xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u4\website\sitecore\shell\client\MikeRobbins\SitecoreDataImporter\DataImporter.js"</PostBuildEvent>
+xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u4\website\sitecore\shell\client\MikeRobbins\Applications\SitecoreDataImporter\DataImporter.js"</PostBuildEvent>
   </PropertyGroup>
 </Project>

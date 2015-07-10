@@ -1,12 +1,7 @@
-﻿
-
-define(["sitecore"], function (Sitecore) {
+﻿define(["sitecore"], function (Sitecore) {
     var DataImporter = Sitecore.Definitions.App.extend({
 
         filesUploaded: [],
-
-        initialized: function () {
-        },
 
         initialize: function () {
             this.on("upload-fileUploaded", this.FileUploaded, this);
@@ -57,30 +52,8 @@ define(["sitecore"], function (Sitecore) {
                     data: JSON.stringify(item)
                 });
 
-
                 this.GetImportAudit();
             }
-
-
-            //$.ajax({
-            //    url: "/api/sitecore/Importer/Import",
-            //    type: "POST",
-            //    data: { template: template.key, folder: folder.key, update: update, fileIds: this.filesUploaded.toString() },
-            //    context: this,
-            //    success: function (data) {
-
-            //        this.summary.viewModel.show();
-
-            //        var json = jQuery.parseJSON(data);
-
-            //        for (var i = 0; i < json.length; i++) {
-            //            var obj = json[i];
-            //            this.JsonDS.add(obj);
-            //        }
-            //    }
-            //});
-
-
 
 
             this.pi.viewModel.hide();
@@ -110,7 +83,6 @@ define(["sitecore"], function (Sitecore) {
 
 
         },
-
 
         FileUploaded: function (model) {
 

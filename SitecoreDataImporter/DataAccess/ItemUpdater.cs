@@ -6,8 +6,8 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
     public class ItemUpdater : IItemUpdater
     {
-        private IFieldUpdater _iFieldUpdater = null;
-        private IItemReader _itemReader = null;
+        private IFieldUpdater _iFieldUpdater;
+        private IItemReader _itemReader;
 
         public ItemUpdater(IFieldUpdater iFieldUpdater, IItemReader itemReader)
         {

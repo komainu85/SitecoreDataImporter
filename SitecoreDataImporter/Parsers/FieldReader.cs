@@ -13,7 +13,6 @@ namespace MikeRobbins.SitecoreDataImporter.Parsers
 {
     public class FieldReader : Interfaces.IFieldReader
     {
-
         private Container _container = null;
 
         public FieldReader()
@@ -28,7 +27,6 @@ namespace MikeRobbins.SitecoreDataImporter.Parsers
             parser = _container.GetInstance<IParser>(file.Extension.ToUpper());
 
             parser.MediaFile = file;
-
 
             var importItems = parser.ParseMediaItem();
 

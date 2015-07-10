@@ -12,11 +12,13 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
     public class AuditReader : IAuditReader
     {
+        private const string AuditFolderId = "{1251023A-F7E0-4559-BCDF-04340C731EBE}";
+
         public ImportAudit GetLatestAudit()
         {
             var importAudit = new ImportAudit();
 
-            var auditFolder = Sitecore.Data.Database.GetDatabase("master").GetItem(new ID("{1251023A-F7E0-4559-BCDF-04340C731EBE}"));
+            var auditFolder = Sitecore.Data.Database.GetDatabase("master").GetItem(new ID(AuditFolderId));
 
             if (auditFolder != null)
             {
@@ -39,10 +41,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
             if (importedItemsField!=null)
             {
-                foreach (var item in importedItemsField.GetItems())
-                {
-                    titles.Add(item.Name);
-                }
+                titles.AddRange(importedItemsField.GetItems().Select(item => item.Name));
             }
 
             return titles;
