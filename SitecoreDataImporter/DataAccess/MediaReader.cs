@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
 using Sitecore.Data;
 using Sitecore.Data.Items;
-using Sitecore.Sites;
 
 namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {

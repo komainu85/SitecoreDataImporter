@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using MikeRobbins.SitecoreDataImporter.Utilities;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.DataAccess
@@ -25,7 +26,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
             var parentItem = _itemReader.GetItem(ParentItemId);
             var template = _itemReader.GetTemplateItem(TemplateId);
 
-            var newItem = parentItem.Add(importItem.Title, template);
+            var newItem = parentItem.Add(importItem.Title.ToSitecoreSafeString(), template);
 
             _iFieldUpdater.AddFieldsDictionaryToItem(newItem, importItem.Fields);
 

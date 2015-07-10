@@ -7,7 +7,7 @@ using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.Parsers
 {
-    public class CsvParse : IParser
+    public class CsvParser : IParser
     {
         public MediaItem MediaFile { get; set; }
 
