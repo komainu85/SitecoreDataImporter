@@ -8,9 +8,7 @@ using System.Web.Http;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.IoC;
-using MikeRobbins.SitecoreDataImporter.Repositories;
 using Sitecore.Services.Core;
-using Sitecore.Services.Infrastructure.Sitecore.Services;
 using Sitecore.Services.Infrastructure.Web.Http;
 using StructureMap;
 
@@ -20,8 +18,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
     public class ItemController : ServicesApiController
     {
         private static ICustomRepositoryActions<DataItem> _customRepositoryActions = Container.GetInstance<ICustomRepositoryActions<DataItem>>();
-
-
+        
         public static Container Container
         {
             get
@@ -33,12 +30,8 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
         [HttpPut]
         public void ImportItems(DataItem dataItem)
         {
-            HttpContent requestContent = Request.Content;
-            string jsonContent = requestContent.ReadAsStringAsync().Result;
-
             _customRepositoryActions.Add(dataItem);
         }
-
 
         [HttpGet]
         public ImportAudit GetImportAudit()

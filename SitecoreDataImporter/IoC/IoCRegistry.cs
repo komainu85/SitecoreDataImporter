@@ -7,8 +7,6 @@ using MikeRobbins.SitecoreDataImporter.DataAccess;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Parsers;
-using Sitecore.Services.Core;
-using Sitecore.Services.Infrastructure.Sitecore.Data;
 using StructureMap.Configuration.DSL;
 
 namespace MikeRobbins.SitecoreDataImporter.IoC
@@ -17,7 +15,8 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
     {
         public IoCRegistry()
         {
-            For<IParser>().Use<CsvParse>().Named("CSV");
+            For<IParser>().Use<CsvParser>().Named("CSV");
+            For<IParser>().Use<JsonParser>().Named("JSON");
             For<IItemCreator>().Use<ItemCreator>();
             For<IMediaReader>().Use<MediaReader>();
             For<IFieldUpdater>().Use<FieldUpdater>();
@@ -26,7 +25,7 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
             For<IItemReader>().Use<ItemReader>();
             For<IAuditCreator>().Use<AuditCreator>();
             For<IAuditReader>().Use<AuditReader>();
-            For(typeof(ICustomRepositoryActions<>)).Use(typeof(MikeRobbins.SitecoreDataImporter.Repositories.ItemRespository));
+            For(typeof(ICustomRepositoryActions<DataItem>)).Use(typeof(MikeRobbins.SitecoreDataImporter.Repositories.ItemRespository));
         }
     }
 }
