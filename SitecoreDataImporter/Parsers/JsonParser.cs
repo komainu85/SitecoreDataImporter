@@ -17,19 +17,29 @@ namespace MikeRobbins.SitecoreDataImporter.Parsers
 
             dynamic json = DeserialiseJson();
 
+            CreateImportItem(json, items);
+
+            return items;
+        }
+
+        private void CreateImportItem(dynamic json, List<ImportItem> items)
+        {
             foreach (var jsonItem in json)
             {
-                var item = new ImportItem() { Title = MediaFile.Name };
+                var item = new ImportItem() {Title = MediaFile.Name};
 
                 foreach (var property in jsonItem)
                 {
+                    if (property.Name.ToLower() == "title")
+                    {
+                        item.Title = property.Value.Value;
+                    }
+
                     item.Fields.Add(property.Name, property.Value.Value);
                 }
 
                 items.Add(item);
             }
-
-            return items;
         }
 
         private dynamic DeserialiseJson()
