@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Items>
+	<Item>
+		<Title>Some Xml data</Title>
+		<Short_Text>Here is a load of text</Short_Text>
+	</Item>
+	<Item>
+		<Title>Some more Xml data</Title>
+		<Short_Text>Here is a load more text</Short_Text>
+	</Item>
+</Items>
