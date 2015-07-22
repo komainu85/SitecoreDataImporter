@@ -17,6 +17,7 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
         {
             For<IParser>().Use<CsvParser>().Named("CSV");
             For<IParser>().Use<JsonParser>().Named("JSON");
+            For<IParser>().Use<XmlParser>().Named("XML");
             For<IItemCreator>().Use<ItemCreator>();
             For<IMediaReader>().Use<MediaReader>();
             For<IFieldUpdater>().Use<FieldUpdater>();
