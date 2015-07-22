@@ -51,10 +51,10 @@ namespace MikeRobbins.SitecoreDataImporter.Parsers
 
                 if (node.Name.ToLower() == "title")
                 {
-                    item.Title = node.Value;
+                    item.Title = node.InnerText;
                 }
 
-                item.Fields.Add(node.Name, node.Value);
+                item.Fields.Add(node.Name, node.InnerText);
 
                 items.Add(item);
 
