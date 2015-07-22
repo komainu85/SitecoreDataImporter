@@ -45,16 +45,21 @@ namespace MikeRobbins.SitecoreDataImporter.Parsers
         {
             var items = new List<ImportItem>();
 
-            foreach (XmlNode node in document.ChildNodes)
+            var array = document.FirstChild;
+
+            foreach (XmlNode node in array.ChildNodes)
             {
                 var item = new ImportItem() { Title = MediaFile.Name };
 
-                if (node.Name.ToLower() == "title")
+                foreach (XmlNode subNode in node.ChildNodes)
                 {
-                    item.Title = node.InnerText;
-                }
+                    if (subNode.Name.ToLower() == "title")
+                    {
+                        item.Title = node.InnerText;
+                    }
 
-                item.Fields.Add(node.Name, node.InnerText);
+                    item.Fields.Add(node.Name, node.InnerText);
+                }
 
                 items.Add(item);
 
