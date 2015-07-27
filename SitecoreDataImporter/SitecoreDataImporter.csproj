@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="App_Config\Include\MikeRobbinsSpeak.Importer.config" />
+    <None Include="App_Config\Include\xMikeRobbinsSpeak.Importer.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
