@@ -10,6 +10,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
 {
     public interface IAuditReader
     {
-     ImportAudit   GetLatestAudit();
+        ImportAudit GetLatestAudit(string fileName);
     }
 }

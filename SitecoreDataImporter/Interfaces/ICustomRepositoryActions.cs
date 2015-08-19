@@ -10,6 +10,6 @@ namespace MikeRobbins.SitecoreDataImporter.Interfaces
 {
     public interface ICustomRepositoryActions<T> : Sitecore.Services.Core.IRepository<T> where T : IEntityIdentity
     {
-        ImportAudit GetImportAudit();
+        ImportAudit GetImportAudit(string fileName);
     }
 }

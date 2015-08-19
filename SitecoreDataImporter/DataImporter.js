@@ -43,7 +43,7 @@
                     ParentId: folder,
                     MediaItemId: this.filesUploaded[i]
                 };
-            
+
                 $.ajax({
                     url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/ImportItems",
                     type: "PUT",
@@ -52,16 +52,16 @@
                     data: JSON.stringify(item)
                 });
 
-                this.GetImportAudit();
+                this.GetImportAudit(this.filesUploaded[i]);
             }
 
 
             this.pi.viewModel.hide();
         },
 
-        GetImportAudit: function () {
+        GetImportAudit: function (mediaItemId) {
             $.ajax({
-                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/1/GetImportAudit",
+                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/"+ mediaItemId+"/GetImportAudit",
                 type: "GET",
                 context: this,
                 success: function (data) {

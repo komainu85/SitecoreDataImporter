@@ -62,7 +62,7 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
                 importResults.Add(newItem);
             }
 
-            _auditCreator.CreateAudit(importResults);
+            _auditCreator.CreateAudit(importResults, mediaItem.ID);
         }
 
         public bool Exists(DataItem entity)
@@ -82,9 +82,9 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             throw new NotImplementedException();
         }
 
-        public ImportAudit GetImportAudit()
+        public ImportAudit GetImportAudit(string mediaItemId)
         {
-            return _auditReader.GetLatestAudit();
+            return _auditReader.GetLatestAudit(mediaItemId);
         }
     }
 }

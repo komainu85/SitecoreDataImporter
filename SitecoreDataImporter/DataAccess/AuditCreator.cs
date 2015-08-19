@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MikeRobbins.SitecoreDataImporter.Interfaces;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.DataAccess
@@ -20,13 +21,14 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
             _itemCreator = itemCreator;
         }
 
-        public void CreateAudit(List<Item> importedItems)
+        public void CreateAudit(List<Item> importedItems, ID mediaItemId)
         {
             var fields = new Dictionary<string, string>();
 
             var successfullImports = importedItems.Aggregate("", (current, importedItem) => current + importedItem.ID.ToString() + "|");
 
             fields.Add("Imported Items", successfullImports);
+            fields.Add("Media file", mediaItemId.ToString());
 
             _itemCreator.ParentItemId = new Guid(AuditParentId);
             _itemCreator.TemplateId = new Guid(AuditTemplateId);

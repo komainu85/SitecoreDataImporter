@@ -34,9 +34,9 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
         }
 
         [HttpGet]
-        public ImportAudit GetImportAudit()
+        public ImportAudit GetImportAudit(string id)
         {
-            return _customRepositoryActions.GetImportAudit();
+            return _customRepositoryActions.GetImportAudit(id);
         }
     }
 }

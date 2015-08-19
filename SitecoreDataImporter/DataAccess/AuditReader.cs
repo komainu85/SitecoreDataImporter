@@ -14,7 +14,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
     {
         private const string AuditFolderId = "{1251023A-F7E0-4559-BCDF-04340C731EBE}";
 
-        public ImportAudit GetLatestAudit()
+        public ImportAudit GetLatestAudit(string mediaItemId)
         {
             var importAudit = new ImportAudit();
 
@@ -22,7 +22,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
             if (auditFolder != null)
             {
-                var lastestAudit = auditFolder.Children.OrderByDescending(x => x.Statistics.Created).FirstOrDefault();
+                var lastestAudit = auditFolder.Children.Where(x => x["Media file"] == mediaItemId).OrderByDescending(x => x.Statistics.Created).FirstOrDefault();
 
                 if (lastestAudit != null)
                 {
@@ -39,7 +39,7 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 
             var importedItemsField = (Sitecore.Data.Fields.MultilistField)auditItem.Fields[fieldName];
 
-            if (importedItemsField!=null)
+            if (importedItemsField != null)
             {
                 titles.AddRange(importedItemsField.GetItems().Select(item => item.Name));
             }
