@@ -49,10 +49,12 @@
                     type: "PUT",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
+                    context: this,
+                    success: function () {
+                        this.GetImportAudit(this.filesUploaded[i-1]);
+                    },
                     data: JSON.stringify(item)
                 });
-
-                this.GetImportAudit(this.filesUploaded[i]);
             }
 
 
@@ -61,7 +63,7 @@
 
         GetImportAudit: function (mediaItemId) {
             $.ajax({
-                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/"+ mediaItemId+"/GetImportAudit",
+                url: "/sitecore/api/ssc/MikeRobbins-SitecoreDataImporter-Controllers/Item/" + mediaItemId + "/GetImportAudit",
                 type: "GET",
                 context: this,
                 success: function (data) {

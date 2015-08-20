@@ -45,7 +45,7 @@ namespace MikeRobbins.SitecoreDataImporter.Utilities
 
         public static ID ParseId(string id)
         {
-            var sID = ID.Null;
+            ID sID;
 
             ID.TryParse(id, out sID);
 
@@ -54,7 +54,7 @@ namespace MikeRobbins.SitecoreDataImporter.Utilities
 
         public static ID ParseId(Guid id)
         {
-            var sID = ID.Null;
+            ID sID;
 
             ID.TryParse(id, out sID);
 

@@ -25,13 +25,13 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
 
         public ItemRespository(IItemCreator itemCreator, IMediaReader mediaReader, IFieldReader fieldReader, IAuditCreator auditCreator, IItemReader itemReader, IItemUpdater itemUpdater,IAuditReader auditReader)
         {
-            this._itemCreator = itemCreator;
-            this._mediaReader = mediaReader;
-            this._fieldReader = fieldReader;
-            this._auditCreator = auditCreator;
-            this._itemReader = itemReader;
-            this._itemUpdater = itemUpdater;
-            this._auditReader = auditReader;
+            _itemCreator = itemCreator;
+            _mediaReader = mediaReader;
+            _fieldReader = fieldReader;
+            _auditCreator = auditCreator;
+            _itemReader = itemReader;
+            _itemUpdater = itemUpdater;
+            _auditReader = auditReader;
         }
 
         public IQueryable<DataItem> GetAll()

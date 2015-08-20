@@ -12,17 +12,18 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
     public class AuditReader : IAuditReader
     {
+        private Database masterDatabase= Sitecore.Data.Database.GetDatabase("master");
         private const string AuditFolderId = "{1251023A-F7E0-4559-BCDF-04340C731EBE}";
 
         public ImportAudit GetLatestAudit(string mediaItemId)
         {
             var importAudit = new ImportAudit();
 
-            var auditFolder = Sitecore.Data.Database.GetDatabase("master").GetItem(new ID(AuditFolderId));
+            var auditFolder = masterDatabase.GetItem(new ID(AuditFolderId));
 
             if (auditFolder != null)
             {
-                var lastestAudit = auditFolder.Children.Where(x => x["Media file"] == mediaItemId).OrderByDescending(x => x.Statistics.Created).FirstOrDefault();
+                var lastestAudit = auditFolder.GetChildren().Where(x => x["Media file"] == mediaItemId).OrderByDescending(x => x.Statistics.Created).FirstOrDefault();
 
                 if (lastestAudit != null)
                 {

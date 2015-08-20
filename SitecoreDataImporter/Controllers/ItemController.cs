@@ -19,13 +19,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
     {
         private static ICustomRepositoryActions<DataItem> _customRepositoryActions = Container.GetInstance<ICustomRepositoryActions<DataItem>>();
         
-        public static Container Container
-        {
-            get
-            {
-                return new Container(new IoCRegistry());
-            }
-        }
+        public static Container Container => new Container(new IoCRegistry());
 
         [HttpPut]
         public void ImportItems(DataItem dataItem)
