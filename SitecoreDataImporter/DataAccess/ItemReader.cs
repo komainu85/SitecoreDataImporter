@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Utilities;
 using Sitecore.Data;
 using Sitecore.Data.Items;

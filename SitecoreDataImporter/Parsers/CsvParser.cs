@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using LumenWorks.Framework.IO.Csv;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using Sitecore.Data.Items;
 
 namespace MikeRobbins.SitecoreDataImporter.Parsers

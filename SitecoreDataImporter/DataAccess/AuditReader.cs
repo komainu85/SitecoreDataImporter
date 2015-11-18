@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using Sitecore.Data;
 using Sitecore.Data.Items;
 

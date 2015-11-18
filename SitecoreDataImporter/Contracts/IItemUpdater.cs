@@ -1,6 +1,6 @@
 ﻿using MikeRobbins.SitecoreDataImporter.Entities;
 
-namespace MikeRobbins.SitecoreDataImporter.Interfaces
+namespace MikeRobbins.SitecoreDataImporter.Contracts
 {
     public interface IItemUpdater
     {

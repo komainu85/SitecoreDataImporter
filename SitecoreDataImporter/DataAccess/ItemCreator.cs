@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Utilities;
 using Sitecore.Data.Items;
 

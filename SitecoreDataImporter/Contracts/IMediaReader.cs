@@ -1,7 +1,8 @@
 ﻿using System;
+using Sitecore.Data;
 using Sitecore.Data.Items;
 
-namespace MikeRobbins.SitecoreDataImporter.Interfaces
+namespace MikeRobbins.SitecoreDataImporter.Contracts
 {
     public interface IMediaReader
     {

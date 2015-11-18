@@ -2,7 +2,7 @@
 using MikeRobbins.SitecoreDataImporter.Entities;
 using Sitecore.Data.Items;
 
-namespace MikeRobbins.SitecoreDataImporter.Interfaces
+namespace MikeRobbins.SitecoreDataImporter.Contracts
 {
     public interface IParser
     {

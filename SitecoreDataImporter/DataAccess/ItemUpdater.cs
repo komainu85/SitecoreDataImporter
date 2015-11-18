@@ -1,5 +1,5 @@
-﻿using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
+﻿using MikeRobbins.SitecoreDataImporter.Contracts;
+using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Utilities;
 
 namespace MikeRobbins.SitecoreDataImporter.DataAccess

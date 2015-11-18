@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.DataAccess;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using Sitecore.Diagnostics.PerformanceCounters;
 using StructureMap;
 using MikeRobbins.SitecoreDataImporter.IoC;
 
 namespace MikeRobbins.SitecoreDataImporter.Repositories
 {
-    public class ItemRespository : ICustomRepositoryActions<DataItem>
+    public class ItemRespository : IItemRepository<DataItem>
     {
         IItemCreator _itemCreator;
         IMediaReader _mediaReader;
@@ -32,16 +32,6 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
             _itemReader = itemReader;
             _itemUpdater = itemUpdater;
             _auditReader = auditReader;
-        }
-
-        public IQueryable<DataItem> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public DataItem FindById(string id)
-        {
-            throw new NotImplementedException();
         }
 
         public void Add(DataItem entity)
@@ -75,11 +65,6 @@ namespace MikeRobbins.SitecoreDataImporter.Repositories
         public void Update(DataItem entity)
         {
             _itemUpdater.UpdateItem(entity);
-        }
-
-        public void Delete(DataItem entity)
-        {
-            throw new NotImplementedException();
         }
 
         public ImportAudit GetImportAudit(string mediaItemId)

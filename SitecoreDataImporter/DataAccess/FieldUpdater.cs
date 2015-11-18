@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using Sitecore;
 using Sitecore.Data.Fields;
 using Sitecore.Data.Items;

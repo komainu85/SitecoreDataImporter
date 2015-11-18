@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using Sitecore;
+using Sitecore.Data.Fields;
 using Sitecore.Data.Items;
+using Sitecore.Services.Core.ComponentModel;
 
-namespace MikeRobbins.SitecoreDataImporter.Interfaces
+namespace MikeRobbins.SitecoreDataImporter.Contracts
 {
     public interface IFieldUpdater
     {

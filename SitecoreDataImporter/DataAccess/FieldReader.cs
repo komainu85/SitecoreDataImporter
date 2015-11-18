@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.IoC;
 using Sitecore.Data.Items;
 using StructureMap;
 
-namespace MikeRobbins.SitecoreDataImporter.Parsers
+namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
-    public class FieldReader : Interfaces.IFieldReader
+    public class FieldReader : IFieldReader
     {
         private Container _container = null;
 

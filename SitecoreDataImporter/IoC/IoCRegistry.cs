@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.DataAccess;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using MikeRobbins.SitecoreDataImporter.Interfaces;
 using MikeRobbins.SitecoreDataImporter.Parsers;
 using StructureMap.Configuration.DSL;
 
@@ -25,7 +25,7 @@ namespace MikeRobbins.SitecoreDataImporter.IoC
             For<IItemReader>().Use<ItemReader>();
             For<IAuditCreator>().Use<AuditCreator>();
             For<IAuditReader>().Use<AuditReader>();
-            For(typeof(ICustomRepositoryActions<DataItem>)).Use(typeof(MikeRobbins.SitecoreDataImporter.Repositories.ItemRespository));
+            For(typeof(IItemRepository<DataItem>)).Use(typeof(MikeRobbins.SitecoreDataImporter.Repositories.ItemRespository));
         }
     }
 }

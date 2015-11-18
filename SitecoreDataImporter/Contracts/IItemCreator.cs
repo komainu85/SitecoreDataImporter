@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using MikeRobbins.SitecoreDataImporter.Entities;
-using Sitecore.Data;
 using Sitecore.Data.Items;
 
-namespace MikeRobbins.SitecoreDataImporter.Interfaces
+namespace MikeRobbins.SitecoreDataImporter.Contracts
 {
     public interface IItemCreator
     {
