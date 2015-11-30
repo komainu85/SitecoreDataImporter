@@ -20,21 +20,21 @@ content-length: 1
 field: {F1A1FE9E-A60C-4DDB-A3A0-BB5B29FE732E}
 name: __Renderings
 key: __renderings
-content-length: 1109
+content-length: 1126
 
 <r>
   <d id="{FE5D7FDF-89C0-4D99-9AA3-B5FBD009C9F3}">
     <r id="{F6C9F461-FCAF-47DC-AA01-C8C64C2EFFB8}" par="Id=Border1&amp;UsePadding=1&amp;ShowBorder=0" uid="{4AED6351-84EC-410D-B52E-3EF08C579D45}" />
-    <r id="{442BD093-FBAD-4E36-BC08-489E16C82D08}" par="Id=Accordion1&amp;Header=SITECORE+TEMPLATE&amp;Tooltip=Select+the+template+of+the+data+your+importing&amp;IsOpen=True" ph="Border1.Content" uid="{AD5D777A-D7F8-4CD5-B786-0C16C26043C1}" />
+    <r id="{442BD093-FBAD-4E36-BC08-489E16C82D08}" par="Id=Accordion1&amp;Header=SITECORE+TEMPLATE&amp;Tooltip=Select+the+template+of+the+data+your+importing&amp;IsOpen=1" ph="Border1.Content" uid="{AD5D777A-D7F8-4CD5-B786-0C16C26043C1}" />
     <r id="{F6C9F461-FCAF-47DC-AA01-C8C64C2EFFB8}" par="Id=Border2&amp;UsePadding=1" ph="Accordion1.Body" uid="{4A24F44E-B003-43E7-B14D-F9AAF45D8AA3}" />
     <r id="{7717EB6C-9F90-4C58-826D-5E87722A0318}" par="Id=Text2&amp;Text=Please+select+the+template+of+the+data+you+wish+to+import." ph="Border2.Content" uid="{EFE2EADF-683A-4255-8866-6FA87228BD80}" />
-    <r ds="{3C1715FE-6A13-4FCF-845F-DE308BA9741D}" id="{08B6767B-8E8A-41C8-8880-EFEBB4EAE0E3}" par="Id=tvTemplate&amp;SelectMode=1&amp;RootItem=%7b3C1715FE-6A13-4FCF-845F-DE308BA9741D%7d&amp;IsCheckboxEnabled=False" ph="Border2.Content" uid="{5C0E8752-595D-4006-86D9-C86EF6714878}" />
+    <r ds="{3C1715FE-6A13-4FCF-845F-DE308BA9741D}" id="{08B6767B-8E8A-41C8-8880-EFEBB4EAE0E3}" par="Id=tvTemplate&amp;SelectMode=1&amp;RootItem=%7b3C1715FE-6A13-4FCF-845F-DE308BA9741D%7d&amp;IsCheckboxEnabled=0&amp;ShowSitecoreIcons=1" ph="Border2.Content" uid="{5C0E8752-595D-4006-86D9-C86EF6714878}" />
   </d>
 </r>
 ----version----
 language: en
 version: 1
-revision: 524935b5-87fc-43ef-a2a8-853af73697d6
+revision: ac1187b9-64c8-4db9-b602-543daa21cece
 
 ----field----
 field: {AEA872FB-AA91-4D1A-B877-3CA6FBBB4FD4}
@@ -56,14 +56,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-524935b5-87fc-43ef-a2a8-853af73697d6
+ac1187b9-64c8-4db9-b602-543daa21cece
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
-content-length: 34
+content-length: 35
 
-20140326T222702:635314696222132456
+20141220T085348:635546624283974909Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

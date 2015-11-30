@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -38,33 +39,59 @@
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net">
-      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\LumenWorks.Framework.IO.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Sitecore.Client">
-      <HintPath>..\packages\Sitecore.8\lib\Sitecore.Client.dll</HintPath>
+    <Reference Include="OpenXmlPowerTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\OpenXmlPowerTools.dll</HintPath>
     </Reference>
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\packages\Sitecore.8\lib\Sitecore.Kernel.dll</HintPath>
+      <HintPath>..\packages\Sitecore.Dlls.8.0.141212.8.0.141212\lib\Sitecore.Kernel.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="Sitecore.Services.Client">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Client.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.0.3.116\lib\net40\StructureMap.Net4.dll</HintPath>
+    <Reference Include="Sitecore.Services.Core">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Services.Infrastructure.Sitecore">
+      <HintPath>..\packages\Sitecore.Services.1.0.0\lib\Sitecore.Services.Infrastructure.Sitecore.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=3.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.3.1.4.143\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.1.0\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -93,32 +120,53 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ImporterController.cs" />
+    <Compile Include="Contracts\IItemRepository.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="DataAccess\AuditCreator.cs" />
+    <Compile Include="DataAccess\AuditReader.cs" />
+    <Compile Include="DataAccess\FieldUpdater.cs" />
+    <Compile Include="Entities\ImportAudit.cs" />
+    <Compile Include="Contracts\IAuditReader.cs" />
+    <Compile Include="Contracts\IAuditCreator.cs" />
+    <Compile Include="Contracts\IItemReader.cs" />
+    <Compile Include="Contracts\IItemUpdater.cs" />
+    <Compile Include="Contracts\IMediaReader.cs" />
+    <Compile Include="DataAccess\MediaReader.cs" />
+    <Compile Include="Contracts\IItemCreator.cs" />
+    <Compile Include="DataAccess\ItemReader.cs" />
+    <Compile Include="Entities\DataItem.cs" />
+    <Compile Include="Contracts\IFieldUpdater.cs" />
+    <Compile Include="DataAccess\ItemCreator.cs" />
+    <Compile Include="DataAccess\ItemUpdater.cs" />
+    <Compile Include="Entities\ImportItem.cs" />
+    <Compile Include="Contracts\IParser.cs" />
+    <Compile Include="IoC\IoCRegistry.cs" />
+    <Compile Include="Parsers\JsonParser.cs" />
+    <Compile Include="Parsers\CsvParser.cs" />
+    <Compile Include="Contracts\IFieldReader.cs" />
+    <Compile Include="DataAccess\FieldReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Repositories\ItemRespository.cs" />
+    <Compile Include="Utilities\SitecoreUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataImporter.js" />
+    <Content Include="Lib\LumenWorks.Framework.IO.dll" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="App_Config\Include\MikeRobbinsSpeak.Importer.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
-      <Project>{001f6fa3-05d5-4534-8e31-259ffcf2bfe7}</Project>
-      <Name>BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\Entities.csproj">
-      <Project>{c41dd892-d6fc-4ee0-a486-241f9bff22db}</Project>
-      <Name>Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
-      <Project>{2411d740-52ee-4f4a-8406-73080b9a336f}</Project>
-      <Name>Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -134,4 +182,15 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptSourceMap>False</TypeScriptSourceMap>
+    <TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
+    <TypeScriptTarget>ES3</TypeScriptTarget>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /Q /Y "$(TargetDir)$(TargetName).*" "C:\inetpub\wwwroot\MikeRobbins8u4\website\bin\"
+xcopy /Q /Y "$(ProjectDir)*.js" "C:\inetpub\wwwroot\MikeRobbins8u4\website\sitecore\shell\client\MikeRobbins\Applications\SitecoreDataImporter\DataImporter.js"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

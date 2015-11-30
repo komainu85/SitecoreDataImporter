@@ -29,10 +29,10 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>.\bin\Debug\</OutputPath>
     <RecursiveDeployAction>Ignore</RecursiveDeployAction>
-    <SitecoreWebUrl>http://mikerobbins72</SitecoreWebUrl>
+    <SitecoreWebUrl>http://mikerobbins8</SitecoreWebUrl>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <DisableFileDeployment>False</DisableFileDeployment>
-    <SitecoreDeployFolder>C:\inetpub\wwwroot\mikerobbins72\Website</SitecoreDeployFolder>
+    <SitecoreDeployFolder>C:\inetpub\wwwroot\mikerobbins8\Website</SitecoreDeployFolder>
     <SitecoreAccessGuid>ce622966-e33c-4b85-99a5-3d7116713f5a</SitecoreAccessGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <SitecoreItem Include="sitecore\client.item">
+      <Icon>/temp/IconCache/Applications/16x16/question_and_answer.png</Icon>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
@@ -61,25 +62,29 @@
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\Applications\Launch Pad.item">
-      <Icon>/temp/IconCache/Applications/32x32/window_new.png</Icon>
+    <SitecoreItem Include="sitecore\client\Applications\Launchpad.item">
+      <Icon>/temp/IconCache/Applications/16x16/media_play.png</Icon>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\Applications\Launch Pad\Page Settings.item">
+    <SitecoreItem Include="sitecore\client\Applications\Launchpad\PageSettings.item">
       <Icon>/temp/IconCache/Applications/16x16/preferences.png</Icon>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\Applications\Launch Pad\Page Settings\Shortcuts.item">
-      <Icon>/temp/IconCache/Applications/16x16/folder.png</Icon>
+    <SitecoreItem Include="sitecore\client\Applications\Launchpad\PageSettings\Buttons.item">
+      <Icon>/temp/IconCache/Software/16x16/element.png</Icon>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
       <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\Applications\Launch Pad\Page Settings\Shortcuts\Data Importer.item">
-      <Icon>/temp/IconCache/Applications/32x32/form_blue.png</Icon>
+    <SitecoreItem Include="sitecore\client\Applications\Launchpad\PageSettings\Buttons\Tools.item">
+      <Icon>/temp/IconCache/Applications/32x32/Document.png</Icon>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
+    </SitecoreItem>
+    <SitecoreItem Include="sitecore\client\Applications\Launchpad\PageSettings\Buttons\Tools\Data Importer.item">
+      <Icon>/temp/IconCache/Applications/32x32/Document.png</Icon>
+      <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\client\MikeRobbins.item">
       <Icon>/temp/IconCache/Software/16x16/application_enterprise.png</Icon>
@@ -92,7 +97,7 @@
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\client\MikeRobbins\Components\JsonDataSource.item">
-      <Icon>/temp/IconCache/Control/16x16/datasource_b.png</Icon>
+      <Icon>/~/icon/Control/16x16/datasource_b.png.aspx</Icon>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
@@ -113,36 +118,6 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\client\MikeRobbins\Components\JsonDataSource\JsonDataSource Parameters\Data\Json.item">
       <Icon>/temp/IconCache/Applications/32x32/Document.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs.item">
-      <Icon>/temp/IconCache/Applications/16x16/folder.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs\RolePermissions.item">
-      <Icon>/temp/IconCache/Applications/16x16/window_dialog.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs\RolePermissions\PageSettings.item">
-      <Icon>/temp/IconCache/Applications/16x16/preferences.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs\RolePermissions\PageSettings\CancelButtonRuleDefinition.item">
-      <Icon>/temp/IconCache/Applications/32x32/form_blue.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs\RolePermissions\PageSettings\MainDialogAction.item">
-      <Icon>/temp/IconCache/Applications/32x32/form_blue.png</Icon>
-      <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
-      <ItemDeployment>AlwaysUpdate</ItemDeployment>
-    </SitecoreItem>
-    <SitecoreItem Include="sitecore\client\MikeRobbins\Dialogs\RolePermissions\PageSettings\MainTitle.item">
-      <Icon>/temp/IconCache/Applications/32x32/form_blue.png</Icon>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
@@ -182,7 +157,7 @@
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\client\MikeRobbins\SitecoreDataImporter\PageSettings\ResultsList.item">
-      <Icon>/temp/IconCache/Control/32x32/listview_b.png</Icon>
+      <Icon>/~/icon/Control/32x32/listview_b.png.aspx</Icon>
       <ChildItemSynchronization>KeepAllChildrenSynchronized</ChildItemSynchronization>
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
