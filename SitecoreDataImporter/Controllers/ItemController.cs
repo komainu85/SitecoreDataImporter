@@ -22,12 +22,14 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
         public static Container Container => new Container(new IoCRegistry());
 
         [HttpPut]
+        [Authorize]
         public void ImportItems(DataItem dataItem)
         {
             _itemRepository.Add(dataItem);
         }
 
         [HttpGet]
+        [Authorize]
         public ImportAudit GetImportAudit(string id)
         {
             return _itemRepository.GetImportAudit(id);
