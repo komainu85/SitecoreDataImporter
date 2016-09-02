@@ -4,13 +4,14 @@ using MikeRobbins.SitecoreDataImporter.Contracts;
 using MikeRobbins.SitecoreDataImporter.Entities;
 using MikeRobbins.SitecoreDataImporter.Utilities;
 using Sitecore.Data.Items;
+using Sitecore.SecurityModel;
 
 namespace MikeRobbins.SitecoreDataImporter.DataAccess
 {
     public class ItemCreator : IItemCreator
     {
-        private IFieldUpdater _iFieldUpdater;
-        private IItemReader _itemReader;
+        private readonly IFieldUpdater _iFieldUpdater;
+        private readonly IItemReader _itemReader;
 
         public ItemCreator(IFieldUpdater iFieldUpdater,IItemReader iItemReader)
         {
@@ -24,25 +25,50 @@ namespace MikeRobbins.SitecoreDataImporter.DataAccess
         public Item CreateItem(ImportItem importItem)
         {
             var parentItem = _itemReader.GetItem(ParentItemId);
-            var template = _itemReader.GetTemplateItem(TemplateId);
+            var template = GetTemplate(TemplateId);
 
-            var newItem = parentItem.Add(importItem.Title.ToSitecoreSafeString(), template);
+            //SecurityDisabler and EnforceVersionPresenceDisabler added to bypass LanguageFallback and security. Remove if not desired
+            using (new SecurityDisabler())
+            {
+                using (new EnforceVersionPresenceDisabler())
+                {
+                    var newItem = parentItem.Add(importItem.Title.ToSitecoreSafeString(), template);
 
-            _iFieldUpdater.AddFieldsDictionaryToItem(newItem, importItem.Fields);
+                    _iFieldUpdater.AddFieldsDictionaryToItem(newItem, importItem.Fields);
 
-            return newItem;
+                    return newItem;
+                }
+            }
         }
 
         public Item CreateItem(string title, Dictionary<string,string> fields)
         {
             var parentItem = _itemReader.GetItem(ParentItemId);
-            var template = _itemReader.GetTemplateItem(TemplateId);
+            var template = GetTemplate(TemplateId);
 
             var newItem = parentItem.Add(title, template);
 
             _iFieldUpdater.AddFieldsDictionaryToItem(newItem, fields);
 
             return newItem;
+        }
+
+        /// <summary>
+        /// Casts item to BranchItem or TemplateItem depending on templatename
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <returns></returns>
+        private dynamic GetTemplate(Guid templateId)
+        {
+            var templateItem = _itemReader.GetItem(templateId);
+            if (templateItem != null)
+            {
+                if (templateItem.TemplateName.ToLowerInvariant().Equals("branch"))
+                    return (BranchItem)templateItem;
+
+                return (TemplateItem)templateItem;
+            }
+            return null;
         }
     }
 }
