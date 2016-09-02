@@ -1,9 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-using MikeRobbins.SitecoreDataImporter.DataAccess;
-using Sitecore.Data;
-using Sitecore.Globalization;
+﻿using Sitecore.Data;
+using Sitecore.Data.Items;
+using System;
 
 namespace MikeRobbins.SitecoreDataImporter.Utilities
 {
@@ -11,36 +8,10 @@ namespace MikeRobbins.SitecoreDataImporter.Utilities
     {
         public static string ToSitecoreSafeString(this string s)
         {
-            var cleaned = s.Trim()
-                           .Replace("–", "_")
-                           .Replace("-", "_")
-                           .Replace("&", "and")
-                           .Replace("'", "")
-                           .Replace(".", "")
-                           .Replace("__", "_")
-                           .Replace("__", "_")
-                           .Replace("/", " ")
-                           .Replace("\\", " ")
-                           .Replace(":", " ")
-                           .Replace("(", "_")
-                           .Replace(")", "_")
-                           .Replace("?", " ")
-                           .Replace("\"", " ")
-                           .Replace("<", " ")
-                           .Replace(">", " ")
-                           .Replace("[", " ")
-                           .Replace("]", " ")
-                           .Replace(";", " ")
-                           .Replace("\n", " ")
-                           .Replace("\r", " ")
-                           .Trim();
+            if (s.Length > 50)
+                s = s.Substring(0, 50).Trim();
 
-            if (cleaned.Length > 50)
-            {
-                cleaned = cleaned.Substring(0, 50).Trim();
-            }
-
-            return cleaned;
+            return ItemUtil.ProposeValidItemName(s);
         }
 
         public static ID ParseId(string id)
