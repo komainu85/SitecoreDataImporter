@@ -18,7 +18,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
     public class ItemController : ServicesApiController
     {
         private static IItemRepository<DataItem> _itemRepository = Container.GetInstance<IItemRepository<DataItem>>();
-        
+
         public static Container Container => new Container(new IoCRegistry());
 
         [HttpPut]
@@ -27,7 +27,7 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
         {
              IndexCustodian.PauseIndexing();
             _itemRepository.Add(dataItem);
-            IndexCustodian.PauseIndexing();
+            IndexCustodian.ResumeIndexing();
         }
 
         [HttpGet]
