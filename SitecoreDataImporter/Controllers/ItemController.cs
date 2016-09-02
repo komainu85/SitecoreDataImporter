@@ -25,7 +25,9 @@ namespace MikeRobbins.SitecoreDataImporter.Controllers
         [Authorize]
         public void ImportItems(DataItem dataItem)
         {
+             IndexCustodian.PauseIndexing();
             _itemRepository.Add(dataItem);
+            IndexCustodian.PauseIndexing();
         }
 
         [HttpGet]
